@@ -1,4 +1,7 @@
 <?php
+
+use Blog\Models\Article;
+
 ob_start();
 ?>
 
@@ -7,6 +10,7 @@ ob_start();
         <?php
         /** @var  $articles Article[] */
         foreach ($articles as $article) { ?>
+
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <div class="modal-body">
@@ -15,6 +19,10 @@ ob_start();
                     <hr class="star-primary"/>
                     <h3>Contenu</h3>
                     <p><?= $article->getContent() ?></p>
+
+                    <form method="POST" action="<?= URL ?>articles/s/<?= $article->getIdArticle(); ?>" onSubmit="return confirm('voulez-vous supprimer cet article ?');">
+                        <button class="btn btn-success btn-lg">Supprimer</button>
+                    </form>
 
                     <ul class="list-inline item-details">
                         <li>Client:
@@ -30,14 +38,18 @@ ob_start();
                             </strong>
                         </li>
                     </ul>
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                 </div>
             </div>
         </div>
-        <?php } ?>
+        <?php
+        }
+        ?>
+
     </div>
 </table>
 <a href="<?= URL ?>articles/a" class="btn btn-success btn-lg">ajouter</a>
+
+
 <?php
 $content = ob_get_clean();
 $titre="articles";
