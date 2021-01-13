@@ -38,6 +38,7 @@ class ArticleManager extends Model
                 $ligneBDD['update_date']
             );
         }
+
         return $articles;
 
     }
@@ -72,5 +73,17 @@ class ArticleManager extends Model
         $stmt->closeCursor();
 
     }
+
+    public function suppressionArticleBd($idArticle)
+    {
+        $req = "DELETE FROM articles WHERE id_article = :id_article";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt ->bindValue(":id_article", $idArticle, \PDO::PARAM_INT);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
+
+
+    }
+
 }
 ?>

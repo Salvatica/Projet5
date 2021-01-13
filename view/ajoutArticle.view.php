@@ -14,7 +14,6 @@
             <textarea class="form-control" id="content" name="content" rows="3"></textarea>
         </div>
 
-
         <button type="submit" class="btn btn-primary">Valider</button>
     </form>
 

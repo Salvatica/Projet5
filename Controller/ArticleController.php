@@ -18,6 +18,7 @@ class ArticleController
     {
         $articles = $this->articleManager->getAllArticles();
 
+
         require "view/listeArticles.view.php";
     }
 
@@ -37,6 +38,14 @@ class ArticleController
 
         $this->articleManager->ajoutArticleBd($_POST['title'],$_POST['subtitle'],$_POST['content']);
         header('location:'.URL."articles");
+
+    }
+
+    public function suppressionArticle($id)
+    {
+        $this->articleManager->getOneArticle($id);
+        $this->articleManager->suppressionArticleBd($id);
+        header('location: '. URL . "articles");
 
     }
 

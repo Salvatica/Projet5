@@ -45,6 +45,7 @@ try {
 
                         if (empty( $url[1] )) {
 
+
                             $articleController->afficherArticles();
                         } else {
                             if(preg_match('/^[0-9]$/', $url[1]))
@@ -60,6 +61,10 @@ try {
                             elseif ($url[1] === "av")
                             {
                                $articleController->ajoutArticleValidation();
+                            }
+                            elseif ($url[1] === "s")
+                            {
+                                $articleController->suppressionArticle($url[2]);
                             }
 
                         }
