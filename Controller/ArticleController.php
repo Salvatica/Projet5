@@ -17,16 +17,30 @@ class ArticleController
     public function afficherArticles()
     {
         $articles = $this->articleManager->getAllArticles();
+        if(is_null($articles))
+            {
+                require "view/404.view.php";
+            }
+        else
+            {
+                require "view/listeArticles.view.php";
+            }
 
-
-        require "view/listeArticles.view.php";
     }
 
     public function afficherArticle($id)
     {
         $theArticle = $this->articleManager->getOneArticle($id);
+        if(is_null($theArticle))
+            {
+                require "view/404.view.php";
+            }
 
-        require "view/afficherArticle.view.php";
+        else
+            {
+                require "view/afficherArticle.view.php";
+            }
+
     }
 
     public function ajoutArticle()
@@ -43,11 +57,25 @@ class ArticleController
 
     public function suppressionArticle($id)
     {
-        $this->articleManager->getOneArticle($id);
-        $this->articleManager->suppressionArticleBd($id);
+        $theArticle = $this->articleManager->getOneArticle($id);
+        if(empty($theArticle)){
+            header('location: '. URL . "articles");
+        }
+
+        $this->articleManager->suppressionArticleBd($theArticle);
         header('location: '. URL . "articles");
 
     }
+
+
+
+    public function modificationArticle($id)
+{
+    $theArticle = $this->articleManager->getOneArticle($id);
+    require "view/modifierArticle.view.php";
+
+}
+
 
 }
 ?>

@@ -20,6 +20,6 @@
 
 <?php
 $content = ob_get_clean();
-$titre="blog";
+$title="blog";
 require "layout.view.php";
 ?>

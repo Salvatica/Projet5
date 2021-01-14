@@ -26,6 +26,12 @@ class ArticleManager extends Model
         $req->closeCursor();
         $articles = [];
 
+        if (empty($lignesBDD))
+        {
+            return null ;
+
+        }
+
 
         foreach ($lignesBDD as $ligneBDD)
         {
@@ -57,6 +63,9 @@ class ArticleManager extends Model
         $req->execute();
         $ligneBDD = $req->fetch();
         $req->closeCursor();
+        if(empty($ligneBDD)){
+            return null;
+        }
         $theArticle = new Article($ligneBDD['id_article'], $ligneBDD['title'], $ligneBDD['subtitle'], $ligneBDD['content'], $ligneBDD['release_date'], $ligneBDD['update_date']);
         return $theArticle;
     }
@@ -74,8 +83,9 @@ class ArticleManager extends Model
 
     }
 
-    public function suppressionArticleBd($idArticle)
+    public function suppressionArticleBd($article)
     {
+        $idArticle = $article->getIdArticle();
         $req = "DELETE FROM articles WHERE id_article = :id_article";
         $stmt = $this->getBdd()->prepare($req);
         $stmt ->bindValue(":id_article", $idArticle, \PDO::PARAM_INT);

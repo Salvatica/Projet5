@@ -1,85 +1,68 @@
 <?php
+
+use Blog\Controller\HomeController;
 use Blog\Controller\ArticleController;
+
 // on défini l'url
-define("URL",str_replace("index.php","",(isset($_SERVER['HTTPS']) ? "https" : "http"). "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
-
-
+define( "URL", str_replace( "index.php", "", (isset( $_SERVER['HTTPS'] ) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]" ) );
 
 
 include "vendor/autoload.php";
 
 
 /**
- remplacé par le controller (psr-4)
+ * remplacé par le controller (psr-4)
+ *
+ * function my_autoloader($class) {
+ *
+ * $class = str_replace("Blog\\","", $class);
+ * $class = str_replace("\\","/", $class);
+ *
+ * require_once $class.".php";
+ *
+ *
+ * }
+ * spl_autoload_register('my_autoloader');
+ */
 
-function my_autoloader($class) {
-
-    $class = str_replace("Blog\\","", $class);
-    $class = str_replace("\\","/", $class);
-
-    require_once $class.".php";
-
-
-}
-spl_autoload_register('my_autoloader');
-*/
+$page = filter_input( INPUT_GET, 'page' );
 
 $articleController = new ArticleController();
 try {
 
-    if (empty( $_GET['page'] ))
+    if (is_null( $page ) || $page === "accueil")
     {
-        require "view/accueil.view.php";
-    } else
+        (new HomeController())->accueil();
+    }
+    elseif ($page === "articles")
+    {
+        $articleController->afficherArticles();
+    }
+    elseif (preg_match( "#articles/(\d+)$#", $page, $matches ))
+    {
+        $articleController->afficherArticle( $matches[1] );
+    }
+    elseif (preg_match( "#articles/a$#", $page, $matches ))
+    {
+        $articleController->ajoutArticle();
+    }
+    elseif (preg_match( "#articles/s/(\d+)$#", $page, $matches ))
+    {
+        $articleController->suppressionArticle( $matches[1] );
+    }
+    elseif (preg_match( "#articles/m/(\d+)$#", $page, $matches ))
+    {
+        $articleController->modificationArticle( $matches[1] );
+    }
+    elseif (preg_match( "#articles/av$#", $page, $matches )) {
+        $articleController->ajoutArticleValidation();
+    }
+    else
         {
-            $url = explode( "/", filter_var( $_GET['page'] ), FILTER_SANITIZE_URL ); // on fait exploser l'url et on sécurise avec "filter sanitize" ce qui permet de faire une route
-
-            switch ($url[0])
-                {
-                    case "accueil" :
-                        require "view/accueil.view.php";
-                        break;
-
-                    case "articles" :
-
-
-                        if (empty( $url[1] )) {
-
-
-                            $articleController->afficherArticles();
-                        } else {
-                            if(preg_match('/^[0-9]$/', $url[1]))
-                            {
-                                $articleController->afficherArticle( $url[1] );
-
-                            }
-
-                            elseif ($url[1] === "a")
-                            {
-                                $articleController->ajoutArticle();
-                            }
-                            elseif ($url[1] === "av")
-                            {
-                               $articleController->ajoutArticleValidation();
-                            }
-                            elseif ($url[1] === "s")
-                            {
-                                $articleController->suppressionArticle($url[2]);
-                            }
-
-                        }
-                        break;
-                    case "connexion" :
-                        require "view/connexion.view.php";
-                        break;
-                    case "contact" :
-                        require "view/contact.view.php";
-                        break;
-                }
+        require "view/404.view.php";
+        //throw new Exception("page introuvable");
         }
-}
-catch(Exception $e)
-{
+
+} catch (Exception $e) {
     echo $e->getMessage();
 }
-?>

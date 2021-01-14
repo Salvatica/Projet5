@@ -51,19 +51,19 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="accueil"> Accueil</a>
+                    <a class="nav-link" href="<?= URL ?>accueil"> Accueil</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="articles"> Articles</a>
+                    <a class="nav-link" href="<?= URL ?>articles"> Articles</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="connexion"> Connexion</a>
+                    <a class="nav-link" href="<?= URL ?>connexion"> Connexion</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="accueil#contact"> Me contacter</a>
+                    <a class="nav-link" href="<?= URL ?>accueil#contact"> Me contacter</a>
                 </li>
             </ul>
         </div>

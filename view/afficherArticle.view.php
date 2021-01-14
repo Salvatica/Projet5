@@ -16,19 +16,16 @@ ob_start();
 
                 <ul class="list-inline item-details">
                     <li>Client:
-                        <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                        <strong><a href="http://startbootstrap.com"></a>
                         </strong>
                     </li>
                     <li>Date:
-                        <strong><a href="http://startbootstrap.com">April 2014</a>
+                        <strong><a href=""></a>
                         </strong>
                     </li>
-                    <li>Service:
-                        <strong><a href="http://startbootstrap.com">Web Development</a>
-                        </strong>
-                    </li>
+
                 </ul>
-                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" ><i class="fa fa-times"></i> Close</button>
             </div>
         </div>
     </div>

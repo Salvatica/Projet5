@@ -15,10 +15,14 @@ ob_start();
             <div class="col-lg-8 col-lg-offset-2">
                 <div class="modal-body">
                     <h2><a href="<?= URL ?>articles/<?= $article->getIdArticle()?>" ><?= $article->getTitle(); ?></a></h2>
-                    <h3><P><?= $article->getSubtitle(); ?></P></h3>
+                    <h3><?= $article->getSubtitle(); ?></h3>
                     <hr class="star-primary"/>
                     <h3>Contenu</h3>
                     <p><?= $article->getContent() ?></p>
+
+                    <form method="POST" action="<?= URL ?>articles/m/<?= $article->getIdArticle(); ?>">
+                        <button class="btn btn-success btn-lg">Modifier</button>
+                    </form>
 
                     <form method="POST" action="<?= URL ?>articles/s/<?= $article->getIdArticle(); ?>" onSubmit="return confirm('voulez-vous supprimer cet article ?');">
                         <button class="btn btn-success btn-lg">Supprimer</button>
@@ -47,12 +51,12 @@ ob_start();
 
     </div>
 </table>
-<a href="<?= URL ?>articles/a" class="btn btn-success btn-lg">ajouter</a>
+<a href="<?= URL ?>articles/a" class="btn btn-success btn-lg">Ajouter</a>
 
 
 <?php
 $content = ob_get_clean();
-$titre="articles";
+$title="articles";
 require "layout.view.php";
 ?>
 
