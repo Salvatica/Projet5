@@ -2,6 +2,7 @@
 
 namespace Blog\Controller;
 
+use Blog\Models\Article;
 use Blog\Models\ArticleManager;
 
 class ArticleController
@@ -67,15 +68,17 @@ class ArticleController
 
     }
 
-
-
     public function modificationArticle($id)
 {
     $theArticle = $this->articleManager->getOneArticle($id);
     require "view/modifierArticle.view.php";
 
 }
-
+    public function modificationArticleValidation()
+    {
+        $this->articleManager->modificationArticleBd($_POST['id_article'], $_POST['title'],$_POST['subtitle'],$_POST['content']);
+        header('location:'. URL . "articles");
+    }
 
 }
 ?>

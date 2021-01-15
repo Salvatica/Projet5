@@ -10,21 +10,6 @@ define( "URL", str_replace( "index.php", "", (isset( $_SERVER['HTTPS'] ) ? "http
 include "vendor/autoload.php";
 
 
-/**
- * remplacé par le controller (psr-4)
- *
- * function my_autoloader($class) {
- *
- * $class = str_replace("Blog\\","", $class);
- * $class = str_replace("\\","/", $class);
- *
- * require_once $class.".php";
- *
- *
- * }
- * spl_autoload_register('my_autoloader');
- */
-
 $page = filter_input( INPUT_GET, 'page' );
 
 $articleController = new ArticleController();
@@ -54,8 +39,13 @@ try {
     {
         $articleController->modificationArticle( $matches[1] );
     }
-    elseif (preg_match( "#articles/av$#", $page, $matches )) {
+    elseif (preg_match( "#articles/av$#", $page, $matches ))
+    {
         $articleController->ajoutArticleValidation();
+    }
+    elseif(preg_match("#articles/mv$#",$page, $matches ))
+    {
+        $articleController->modificationArticleValidation();
     }
     else
         {

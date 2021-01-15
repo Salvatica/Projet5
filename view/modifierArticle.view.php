@@ -15,7 +15,7 @@ ob_start();
         <label for="content" class="form-label">Contenu</label>
         <textarea class="form-control" id="content" name="content" rows="3"><?= $theArticle->getContent();?></textarea>
     </div>
-
+    <input type="hidden" id="id_article" name="id_article" value="<?= $theArticle->getIdArticle(); ?>">
     <button type="submit" class="btn btn-primary">Valider</button>
 </form>
 

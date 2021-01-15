@@ -92,8 +92,19 @@ class ArticleManager extends Model
         $resultat = $stmt->execute();
         $stmt->closeCursor();
 
+    }
+    public function modificationArticleBd ($idArticle, $title,$subtitle, $content)
+    {
+        $req = "UPDATE articles SET title = :title, subtitle = :subtitle, content = :content WHERE id_article = :id";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":id", $idArticle, \PDO::PARAM_INT);
+        $stmt->bindValue(":title", $title, \PDO::PARAM_STR);
+        $stmt->bindValue(":subtitle", $subtitle,\PDO::PARAM_STR);
+        $stmt->bindValue(":content", $content,\PDO::PARAM_STR);
+        var_dump($req);
+        $resultat = $stmt->execute();
+        $stmt->closeCursor();
 
     }
 
 }
-?>
