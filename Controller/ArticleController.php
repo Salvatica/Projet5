@@ -4,14 +4,16 @@ namespace Blog\Controller;
 
 use Blog\Models\Article;
 use Blog\Models\ArticleManager;
+use Blog\Models\CommentManager;
 
 class ArticleController
 {
-    private$articleManager;
-
+    private $articleManager;
+    private $commentManager;
     public function __construct()
     {
         $this->articleManager = new ArticleManager;
+        $this->commentManager = new CommentManager;
 
     }
 
@@ -31,7 +33,13 @@ class ArticleController
 
     public function afficherArticle($id)
     {
+        $comments = $this->commentManager->getAllComments();
         $theArticle = $this->articleManager->getOneArticle($id);
+        if($_POST) {
+            // TODO replqce 1 by logged user
+            $this->commentManager->ajoutCommentBd($id,1,$_POST["comment"]);
+            header("location:".URL."articles/$id");
+        }
         if(is_null($theArticle))
             {
                 require "view/404.view.php";

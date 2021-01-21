@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-    <form method="POST" action="<?= URL ?>articles/av">
+    <form method="POST" action="<?= URL ?>articles/ajoutvalidation">
         <div class="mb-3">
             <label for="title">Titre : </label>
             <input type="text" class="form-control" id="title" name="title">

@@ -2,7 +2,7 @@
 ob_start();
 ?>
 
-<form method="POST" action="<?= URL ?>articles/mv">
+<form method="POST" action="<?= URL ?>articles/modificationValidation">
     <div class="mb-3">
         <label for="title">Titre : </label>
         <input type="text" class="form-control" id="title" name="title" value="<?= $theArticle->getTitle();?>">

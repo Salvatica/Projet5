@@ -27,23 +27,23 @@ try {
     {
         $articleController->afficherArticle( $matches[1] );
     }
-    elseif (preg_match( "#articles/a$#", $page, $matches ))
+    elseif (preg_match( "#articles/ajout$#", $page, $matches ))
     {
         $articleController->ajoutArticle();
     }
-    elseif (preg_match( "#articles/s/(\d+)$#", $page, $matches ))
+    elseif (preg_match( "#articles/suppression/(\d+)$#", $page, $matches ))
     {
         $articleController->suppressionArticle( $matches[1] );
     }
-    elseif (preg_match( "#articles/m/(\d+)$#", $page, $matches ))
+    elseif (preg_match( "#articles/modification/(\d+)$#", $page, $matches ))
     {
         $articleController->modificationArticle( $matches[1] );
     }
-    elseif (preg_match( "#articles/av$#", $page, $matches ))
+    elseif (preg_match( "#articles/ajoutvalidation$#", $page, $matches ))
     {
         $articleController->ajoutArticleValidation();
     }
-    elseif(preg_match("#articles/mv$#",$page, $matches ))
+    elseif(preg_match("#articles/modificationvalidation$#",$page, $matches ))
     {
         $articleController->modificationArticleValidation();
     }

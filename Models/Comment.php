@@ -14,17 +14,17 @@ class Comment
     /**
      * @var User
      */
-    private $author;
+    private $user;
     /**
      * @var Article
      */
     private $article;
 
-    public function __construct($content, $date, $author,$article)
+    public function __construct($content, $date, $user,$article)
     {
         $this->content = $content;
         $this->date = $date;
-        $this->author = $author;
+        $this->user = $user;
         $this->article = $article;
     }
 
@@ -50,12 +50,12 @@ class Comment
 
     public function getAuthor()
     {
-        return $this->author;
+        return $this->user;
     }
 
-    public function setAuthor($author)
+    public function setAuthor($user)
     {
-        $this->author = $author;
+        $this->user = $user;
     }
 
     public function getArticle()

@@ -18,13 +18,13 @@ ob_start();
                     <h3><?= $article->getSubtitle(); ?></h3>
                     <hr class="star-primary"/>
                     <h3>Contenu</h3>
-                    <p><?= $article->getContent() ?></p>
+                    <p><?= nl2br($article->getContent()) ?></p>
 
-                    <form method="POST" action="<?= URL ?>articles/m/<?= $article->getIdArticle(); ?>">
+                    <form method="POST" action="<?= URL ?>articles/modification/<?= $article->getIdArticle(); ?>">
                         <button class="btn btn-success btn-lg">Modifier</button>
                     </form>
 
-                    <form method="POST" action="<?= URL ?>articles/s/<?= $article->getIdArticle(); ?>" onSubmit="return confirm('voulez-vous supprimer cet article ?');">
+                    <form method="POST" action="<?= URL ?>articles/suppression/<?= $article->getIdArticle(); ?>" onSubmit="return confirm('voulez-vous supprimer cet article ?');">
                         <button class="btn btn-success btn-lg">Supprimer</button>
                     </form>
 
@@ -51,7 +51,7 @@ ob_start();
 
     </div>
 </table>
-<a href="<?= URL ?>articles/a" class="btn btn-success btn-lg">Ajouter</a>
+<a href="<?= URL ?>articles/ajout" class="btn btn-success btn-lg">Ajouter</a>
 
 
 <?php

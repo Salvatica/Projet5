@@ -4,6 +4,11 @@ namespace Blog\Models;
 class User
 {
     /**
+     * @var int
+     *
+     */
+    private $idUser;
+    /**
      * @var string
      */
     private $mailAddress;
@@ -43,6 +48,22 @@ class User
 
 
         return $errors;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * @param int $idUser
+     */
+    public function setIdUser(int $idUser)
+    {
+        $this->idUser = $idUser;
     }
 
     /**
