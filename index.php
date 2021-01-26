@@ -2,6 +2,7 @@
 
 use Blog\Controller\HomeController;
 use Blog\Controller\ArticleController;
+use Blog\Controller\CommentController;
 
 // on défini l'url
 define( "URL", str_replace( "index.php", "", (isset( $_SERVER['HTTPS'] ) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]" ) );
@@ -11,6 +12,8 @@ include "vendor/autoload.php";
 
 
 $page = filter_input( INPUT_GET, 'page' );
+
+$commentController = new CommentController();
 
 $articleController = new ArticleController();
 try {
@@ -43,9 +46,21 @@ try {
     {
         $articleController->ajoutArticleValidation();
     }
-    elseif(preg_match("#articles/modificationvalidation$#",$page, $matches ))
+    elseif(preg_match("#articles/modificationValidation$#",$page, $matches ))
     {
         $articleController->modificationArticleValidation();
+    }
+    elseif ($page === "connexion")
+    {
+        require "view/connexion.view.php";
+    }
+    elseif ($page === "register")
+    {
+        require "view/register.view.php";
+    }
+    elseif ($page === "admin/listeComments")
+    {
+        $commentController->afficherComments();
     }
     else
         {

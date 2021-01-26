@@ -115,6 +115,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     Copyright &copy; Monblog 2020
+                    <a href="Administration"lien vers admin</a>
                 </div>
             </div>
         </div>

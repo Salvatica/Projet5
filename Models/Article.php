@@ -38,8 +38,8 @@ class Article
         $this->title = $title;
         $this->subtitle = $subtitle;
         $this->content = $content;
-        $this->releaseDate = $releaseDate;
-        $this->updateDate = $updateDate;
+        $this->releaseDate = new \DateTime($releaseDate);
+        $this->updateDate = new \DateTime($updateDate);
 
     }
 
@@ -114,7 +114,7 @@ class Article
     /**
      * @return datetime
      */
-    public function getReleaseDate()
+    public function getReleaseDate() :\DateTime
 
     {
         return $this->releaseDate;
@@ -133,7 +133,7 @@ class Article
     /**
      * @return datetime
      */
-    public function getUpdateDate(): datetime
+    public function getUpdateDate() :\DateTime
     {
         return $this->updateDate;
     }

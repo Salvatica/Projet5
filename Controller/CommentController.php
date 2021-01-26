@@ -16,15 +16,16 @@ class CommentController
         $this->commentManager = new CommentManager;
     }
 
-/*    public function afficherComments()
+   public function afficherComments()
     {
-        $comments = $this->CommentManager->getAllComments();
+        $comments = $this->commentManager->getAllComments();
+
         if (is_null( $comments )) {
             require "view/404.view.php";
         } else {
             require "view/listeComments.view.php";
         }
-    }*/
+    }
 /*        public function afficherComment($id)
         {
             $theComment = $this->CommentManager->getOneComment($id);

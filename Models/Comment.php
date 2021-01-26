@@ -19,15 +19,25 @@ class Comment
      * @var Article
      */
     private $article;
+    private $idComment;
 
-    public function __construct($content, $date, $user,$article)
+    public function __construct($idComment,$content, $date, $user,$article)
     {
+        $this->idComment=$idComment;
         $this->content = $content;
         $this->date = $date;
         $this->user = $user;
         $this->article = $article;
     }
+    public function getIdComment()
+    {
+        return $this->idComment;
+    }
 
+    public function setIdComment($idComment)
+    {
+        $this->idComment = $idComment;
+    }
     public function getContent()
     {
         return $this->content;

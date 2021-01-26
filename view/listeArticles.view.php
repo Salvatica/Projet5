@@ -19,7 +19,7 @@ ob_start();
                     <hr class="star-primary"/>
                     <h3>Contenu</h3>
                     <p><?= nl2br($article->getContent()) ?></p>
-
+                    <!-- modif suppression -->
                     <form method="POST" action="<?= URL ?>articles/modification/<?= $article->getIdArticle(); ?>">
                         <button class="btn btn-success btn-lg">Modifier</button>
                     </form>
@@ -29,18 +29,15 @@ ob_start();
                     </form>
 
                     <ul class="list-inline item-details">
-                        <li>Client:
-                            <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                        <li>Date de création:
+                            <strong><a href="<?= URL ?>articles/<?= $article->getIdArticle()?>"> <?= $article->getReleaseDate()->format("d/m/y H:i:s"); ?></a>
                             </strong>
                         </li>
-                        <li>Date:
-                            <strong><a href="http://startbootstrap.com">April 2014</a>
+                        <li>Date de modification:
+                            <strong><a href="<?= URL ?>articles/<?= $article->getIdArticle()?>"> <?= $article->getUpdateDate()->format("d/m/Y H:i:s"); ?></a>
                             </strong>
                         </li>
-                        <li>Service:
-                            <strong><a href="http://startbootstrap.com">Web Development</a>
-                            </strong>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -51,6 +48,8 @@ ob_start();
 
     </div>
 </table>
+<!-- ajouter un article-->
+
 <a href="<?= URL ?>articles/ajout" class="btn btn-success btn-lg">Ajouter</a>
 
 

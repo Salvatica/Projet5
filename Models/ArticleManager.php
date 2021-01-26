@@ -1,15 +1,13 @@
 <?php
 namespace Blog\Models;
 
-require_once "Model.php";
-require_once "Article.php";
 
 
 
 
 class ArticleManager extends Model
 {
-    const GET_ALL_ARTICLES_SQL_REQUEST = "SELECT * FROM articles";
+    const GET_ALL_ARTICLES_SQL_REQUEST = "SELECT * FROM articles ORDER BY release_date DESC";
     const GET_ONE_ARTICLE_BY_ID_SQL_REQUEST = "SELECT * FROM articles WHERE id_article = :id";
 
 
@@ -95,7 +93,7 @@ class ArticleManager extends Model
     }
     public function modificationArticleBd ($idArticle, $title,$subtitle, $content)
     {
-        $req = "UPDATE articles SET title = :title, subtitle = :subtitle, content = :content WHERE id_article = :id";
+        $req = "UPDATE articles SET title = :title, subtitle = :subtitle, content = :content, update_date = NOW() WHERE id_article = :id";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":id", $idArticle, \PDO::PARAM_INT);
         $stmt->bindValue(":title", $title, \PDO::PARAM_STR);

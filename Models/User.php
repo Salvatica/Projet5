@@ -69,7 +69,7 @@ class User
     /**
      * @return string
      */
-    public function getMailAddress()
+    public function getMailAdress()
     {
         return $this->mailAddress;
     }

@@ -16,7 +16,11 @@ ob_start();
                 <label for="pwd">Mot de passe:</label>
                 <input type="password" class="form-control" placeholder="Mot de passe" id="pwd">
             </div>
-            <button type="submit" class="btn btn-primary">Connexion</button>
+            <div class="form-group">
+                <label for="nom">Nom:</label>
+                <input type="text" class="form-control" placeholder="Nom" id="nom">
+            </div>
+            <button type="submit" class="btn btn-primary">S'enregistrer</button>
         </form>
     </div>
     </div>
