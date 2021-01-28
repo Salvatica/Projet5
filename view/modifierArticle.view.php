@@ -17,7 +17,12 @@ ob_start();
     </div>
     <input type="hidden" id="id_article" name="id_article" value="<?= $theArticle->getIdArticle(); ?>">
     <button type="submit" class="btn btn-primary">Valider</button>
+    <button type="submit" class="btn btn-primary"><a href="<?=URL?>admin/listeArticles">Retour</a></button>
 </form>
+
+
+
+
 
 
 <?php

@@ -1,18 +1,19 @@
 <?php
 
 
-namespace Blog\Models;
+namespace Blog\Controller;
+use Blog\Models\ArticleManager;
 
 
-class articleAdmin
 
+class AdminArticleController
 {
-    private $ArticleManager;
-    private $CommentManager;
+    private $articleManager;
+
     public function __construct()
     {
-        $this->ArticleManager = new ArticleManager;
-        $this->CommentManager = new CommentManager;
+        $this->articleManager = new ArticleManager;
+
 
     }
 
@@ -25,7 +26,7 @@ class articleAdmin
         }
         else
         {
-            require "view/listeArticles.view.php";
+            require "view/adminArticles.view.php";
         }
 
     }

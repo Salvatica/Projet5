@@ -14,8 +14,8 @@ ob_start();
                 <hr class="star-primary"/>
                 <h3>Contenu</h3>
                 <p><?=nl2br( $theArticle->getContent() )?></p>
-                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> <a
-                            href="<?=URL?>articles">Retour</a></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
+                    <a href="<?=URL?>articles">Retour</a></button>
             </div>
         </div>
     </div>

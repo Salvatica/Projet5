@@ -3,6 +3,7 @@
 use Blog\Controller\HomeController;
 use Blog\Controller\ArticleController;
 use Blog\Controller\CommentController;
+use Blog\Controller\AdminArticleController;
 
 // on défini l'url
 define( "URL", str_replace( "index.php", "", (isset( $_SERVER['HTTPS'] ) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]" ) );
@@ -16,6 +17,8 @@ $page = filter_input( INPUT_GET, 'page' );
 $commentController = new CommentController();
 
 $articleController = new ArticleController();
+
+$adminArticleController = new AdminArticleController();
 try {
 
     if (is_null( $page ) || $page === "accueil")
@@ -61,6 +64,10 @@ try {
     elseif ($page === "admin/listeComments")
     {
         $commentController->afficherComments();
+    }
+    elseif ($page === "admin/listeArticles")
+    {
+        $adminArticleController->afficherArticles();
     }
     else
         {

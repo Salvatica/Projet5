@@ -20,13 +20,9 @@ ob_start();
                     <h3>Contenu</h3>
                     <p><?= nl2br($article->getContent()) ?></p>
                     <!-- modif suppression -->
-                    <form method="POST" action="<?= URL ?>articles/modification/<?= $article->getIdArticle(); ?>">
-                        <button class="btn btn-success btn-lg">Modifier</button>
-                    </form>
 
-                    <form method="POST" action="<?= URL ?>articles/suppression/<?= $article->getIdArticle(); ?>" onSubmit="return confirm('voulez-vous supprimer cet article ?');">
-                        <button class="btn btn-success btn-lg">Supprimer</button>
-                    </form>
+
+                </div>
 
                     <ul class="list-inline item-details">
                         <li>Date de création:
@@ -39,7 +35,7 @@ ob_start();
                         </li>
 
                     </ul>
-                </div>
+
             </div>
         </div>
         <?php
@@ -48,9 +44,7 @@ ob_start();
 
     </div>
 </table>
-<!-- ajouter un article-->
 
-<a href="<?= URL ?>articles/ajout" class="btn btn-success btn-lg">Ajouter</a>
 
 
 <?php
