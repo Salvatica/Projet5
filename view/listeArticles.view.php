@@ -14,23 +14,23 @@ ob_start();
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <div class="modal-body">
-                    <h2><a href="<?= URL ?>articles/<?= $article->getIdArticle()?>" ><?= $article->getTitle(); ?></a></h2>
-                    <h3><?= $article->getSubtitle(); ?></h3>
+                    <h2><a href="<?= URL ?>articles/<?= htmlspecialchars($article->getIdArticle()); ?>" ><?= htmlspecialchars($article->getTitle()); ?></a></h2>
+                    <h3><?= htmlspecialchars($article->getSubtitle()); ?></h3>
                     <hr class="star-primary"/>
                     <h3>Contenu</h3>
-                    <p><?= nl2br($article->getContent()) ?></p>
-                    <!-- modif suppression -->
+                    <p><?= nl2br(htmlspecialchars($article->getContent())); ?></p>
+
 
 
                 </div>
 
                     <ul class="list-inline item-details">
                         <li>Date de création:
-                            <strong><a href="<?= URL ?>articles/<?= $article->getIdArticle()?>"> <?= $article->getReleaseDate()->format("d/m/y H:i:s"); ?></a>
+                            <strong><a href="<?= URL ?>articles/<?= htmlspecialchars($article->getIdArticle());?>"> <?= htmlspecialchars($article->getReleaseDate()->format("d/m/y H:i:s")); ?></a>
                             </strong>
                         </li>
                         <li>Date de modification:
-                            <strong><a href="<?= URL ?>articles/<?= $article->getIdArticle()?>"> <?= $article->getUpdateDate()->format("d/m/Y H:i:s"); ?></a>
+                            <strong><a href="<?= URL ?>articles/<?= htmlspecialchars($article->getIdArticle());?>"> <?= htmlspecialchars($article->getUpdateDate()->format("d/m/Y H:i:s")); ?></a>
                             </strong>
                         </li>
 
@@ -49,7 +49,7 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-$title="articles";
+$title = "articles";
 require "layout.view.php";
 ?>
 

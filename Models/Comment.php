@@ -1,8 +1,14 @@
 <?php
 namespace Blog\Models;
 
+use DateTime;
+
 class Comment
 {
+    /**
+     * @var int
+     */
+    private $idComment;
     /**
      * @var string
      */
@@ -10,31 +16,37 @@ class Comment
     /**
      * @var dateTime
      */
-    private $date;
+    private $releaseDate;
     /**
      * @var User
      */
-    private $user;
+    private $author;
     /**
      * @var Article
      */
     private $article;
-    private $idComment;
+    /**
+     * @var boolean
+     */
+    private $isValid;
 
-    public function __construct($idComment,$content, $date, $user,$article)
+
+
+    public function __construct($idComment,$content, $releaseDate, $user,$article)
     {
         $this->idComment=$idComment;
         $this->content = $content;
-        $this->date = $date;
-        $this->user = $user;
+        $this->releaseDate = new \DateTime($releaseDate);
+        $this->author = $user;
         $this->article = $article;
+
     }
     public function getIdComment()
     {
         return $this->idComment;
     }
 
-    public function setIdComment($idComment)
+    public function setIdComment(int $idComment)
     {
         $this->idComment = $idComment;
     }
@@ -48,24 +60,24 @@ class Comment
         $this->content = $content;
     }
 
-    public function getDate()
+    public function getReleaseDate():\DateTime
     {
-        return $this->date;
+        return $this->releaseDate;
     }
 
-        public function setDate($date)
+        public function setReleaseDate($releaseDate)
     {
-        $this->date = $date;
+        $this->releaseDate = $releaseDate;
     }
 
     public function getAuthor()
     {
-        return $this->user;
+        return $this->author;
     }
 
     public function setAuthor($user)
     {
-        $this->user = $user;
+        $this->author = $user;
     }
 
     public function getArticle()
@@ -77,4 +89,21 @@ class Comment
     {
         $this->article = $article;
     }
+
+    /**
+     * @return bool
+     */
+    public function isValid(): bool
+    {
+        return $this->isValid;
+    }
+
+    /**
+     * @param bool $isValid
+     */
+    public function setIsValid(bool $isValid)
+    {
+        $this->isValid = $isValid;
+    }
+
 }

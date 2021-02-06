@@ -33,11 +33,11 @@ class ArticleController
 
     public function afficherArticle($id)
     {
-        $comments = $this->commentManager->getAllCommentsByArticleId($id);
+        $comments = $this->commentManager->getAllValidCommentsByArticleId($id);
         $theArticle = $this->articleManager->getOneArticle($id);
         if($_POST) {
             // TODO replqce 1 by logged user
-            $this->commentManager->ajoutCommentBd($id,idUser,$_POST["comment"]);
+            $this->commentManager->ajoutCommentBd($id,3,$_POST["comment"]);
             header("location:".URL."articles/$id");
         }
         if(is_null($theArticle))

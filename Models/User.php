@@ -7,11 +7,11 @@ class User
      * @var int
      *
      */
-    private $idUser;
+    private $id;
     /**
      * @var string
      */
-    private $mailAddress;
+    private $email;
     /**
      * @var string
      */
@@ -24,11 +24,11 @@ class User
     /**
      * @var string
      */
-    private $role;
+    private $role = "USER";
 
     public function __construct ($mailAddress, $name, $password, $role)
     {
-        $this->mailAddress = $mailAddress;
+        $this->email = $mailAddress;
         $this->name = $name;
         $this->password = $password;
         $this->role = $role;
@@ -38,14 +38,19 @@ class User
     {
         $errors = [];
         // verification du mail
-        if(!filter_var($this->getMailAddress(),FILTER_VALIDATE_EMAIL)) {
+        if(!filter_var($this->getEmail(),FILTER_VALIDATE_EMAIL)) {
             //Invalid email!
-            $errors = "L'adresse mail est invalide";
+            $errors[] = "L'adresse mail est invalide";
         }
-
         // verification du pseudo
-        // si psuedo pas ok $errors[] = "Pseudo pas valid"
-
+        if(empty($this->getName()) || strlen($this->getName()) < 3){
+            $errors[] = "Le nom doit comporter au moins 3 caractères.";
+        }
+        // Vérification password
+        if(empty($this->getPassword()) || strlen($this->getPassword()) < 6)
+        {
+            $errors[] = "Le mot de passe doit comporter au moins 6 caractères";
+        }
 
         return $errors;
     }
@@ -53,33 +58,33 @@ class User
     /**
      * @return int
      */
-    public function getIdUser()
+    public function getId()
     {
-        return $this->idUser;
+        return $this->id;
     }
 
     /**
      * @param int $idUser
      */
-    public function setIdUser(int $idUser)
+    public function setId(int $idUser)
     {
-        $this->idUser = $idUser;
+        $this->id = $idUser;
     }
 
     /**
      * @return string
      */
-    public function getMailAdress()
+    public function getEmail()
     {
-        return $this->mailAddress;
+        return $this->email;
     }
 
     /**
-     * @param string $mailAddress
+     * @param string $email
      */
-    public function setMailAddress($mailAddress)
+    public function setEmail($email)
     {
-        $this->mailAddress = $mailAddress;
+        $this->email = $email;
     }
 
     /**

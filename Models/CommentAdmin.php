@@ -11,7 +11,7 @@ class CommentAdmin extends Model
 {
 
     const GET_ALL_COMMENTS_SQL_REQUEST = "SELECT * FROM comments";
-    const GET_ONE_COMMENT_BY_ID_SQL_REQUEST = "SELECT content FROM comments WHERE id_comment = :id";
+    const GET_ONE_COMMENT_BY_ID_SQL_REQUEST = "SELECT comment FROM comments WHERE id_comment = :id";
 
     private $userManager;
 
@@ -39,9 +39,10 @@ class CommentAdmin extends Model
             $comments[] = new Comment(
                 $ligneBDD['id_comment'],
                 $ligneBDD['content'],
-                $ligneBDD['date'],
+                $ligneBDD['release_date'],
                 $ligneBDD['id_user'],
                 $ligneBDD['id_article']
+
             );
         }
 

@@ -4,30 +4,37 @@ ob_start();
 
 
 
+
     <div class="container">
-        <h2 class="text-center">Connexion</h2>
-        <div class="col-lg-6 col-lg-offset-3"
-        <form action="/action_page.php">
+        <?php if (!empty($errors)): ?>
+            <div class="alert alert-danger">
+                <?php foreach ($errors as $error): ?>
+                    <p><?= $error; ?></p>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+        <h2 class="text-center">S'enregistrer</h2>
+        <form method="POST">
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" placeholder="Email" id="email">
+                <label for="name">Nom d'utilisateur</label>
+                <input type="text" name="name" class="form-control" placeholder="Nom d'utilisateur"
+                       value="<?= $name ?? ''; ?>">
             </div>
             <div class="form-group">
-                <label for="pwd">Mot de passe:</label>
-                <input type="password" class="form-control" placeholder="Mot de passe" id="pwd">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Email" value="<?= $email ?? ''; ?>">
             </div>
             <div class="form-group">
-                <label for="nom">Nom:</label>
-                <input type="text" class="form-control" placeholder="Nom" id="nom">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Mot de passe">
             </div>
-            <button type="submit" class="btn btn-primary">S'enregistrer</button>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
         </form>
-    </div>
     </div>
 
 
 <?php
 $content = ob_get_clean();
-$titre="connexion";
+$titre = "connexion";
 require "layout.view.php";
 ?>

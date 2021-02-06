@@ -9,11 +9,11 @@ ob_start();
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
             <div class="modal-body">
-                <h2><? URL ?><?=$theArticle->getTitle()?></h2>
-                <h3><?=$theArticle->getSubtitle()?></h3>
+                <h2><? URL ?><?=htmlspecialchars($theArticle->getTitle()); ?></h2>
+                <h3><?=htmlspecialchars($theArticle->getSubtitle()); ?></h3>
                 <hr class="star-primary"/>
                 <h3>Contenu</h3>
-                <p><?=nl2br( $theArticle->getContent() )?></p>
+                <p><?=nl2br( htmlspecialchars($theArticle->getContent() )); ?></p>
                 <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
                     <a href="<?=URL?>articles">Retour</a></button>
             </div>
@@ -34,20 +34,15 @@ ob_start();
                             <input name="submit" type="submit" id="submit" class="submit btn btn-primary my-3"
                                    value="Poster mon commentaire"/>
                         </div>
-
                     </form>
-
-
                 </div>
 
             </div>
-
-
         </div>
 
         <?php foreach ($comments as $comment) { ?>
             <div class="form-floating">
-                <div><p><?=$comment->getContent()?></p></div>
+                <div><p><?=htmlspecialchars($comment->getContent()); ?></p></div>
                 <label for="floatingTextarea">Comments</label>
 
             </div>

@@ -7,7 +7,7 @@ class CommentManager extends Model
 {
 
     const GET_ALL_COMMENTS_SQL_REQUEST = "SELECT * FROM comments";
-    const GET_ONE_COMMENT_BY_ID_SQL_REQUEST = "SELECT content FROM comments WHERE id_comment = :id";
+    const GET_ONE_COMMENT_BY_ID_SQL_REQUEST = "SELECT comment FROM comments WHERE id_comment = :id";
 
     private $userManager;
     private $articleManager;
@@ -24,7 +24,7 @@ class CommentManager extends Model
     public function getAllComments()
 
     {
-        $req = $this->getBdd()->prepare(self::GET_ALL_COMMENTS_SQL_REQUEST);//On utilise une constante
+        $req = $this->getBdd()->prepare(self::GET_ALL_COMMENTS_SQL_REQUEST);
         $req->execute();
         $lignesBDD = $req->fetchALL(\PDO::FETCH_ASSOC);
         $req->closeCursor();
@@ -32,12 +32,12 @@ class CommentManager extends Model
 
         foreach ($lignesBDD as $ligneBDD)
         {
-            //$author = $this->userManager->getOneUser($ligneBDD['id_user']);
+
 
             $theComment = new Comment(
                 $ligneBDD['id_comment'],
                 $ligneBDD['content'],
-                $ligneBDD['date'],
+                $ligneBDD['release_date'],
                 $ligneBDD['id_user'],
                 $this->articleManager->getOneArticle(intval($ligneBDD['id_article']))
             );
@@ -50,9 +50,9 @@ class CommentManager extends Model
         return $comments;
 
     }
-    public function getAllCommentsByArticleId($idArticle)
+    public function getAllValidCommentsByArticleId($idArticle)
     {
-        $req = $this->getBdd()->prepare( "SELECT * FROM comments WHERE id_article = :idArticle" );//On utilise une constante
+        $req = $this->getBdd()->prepare( "SELECT * FROM comments WHERE id_article = :idArticle AND is_valid=true " );//On utilise une constante
         $req->bindParam( 'idArticle', $idArticle, \PDO::PARAM_INT );
         $req->execute();
         $lignesBDD = $req->fetchALL( \PDO::FETCH_ASSOC );
@@ -65,12 +65,35 @@ class CommentManager extends Model
             $comments[] = new Comment(
                 $ligneBDD['id_comment'],
                 $ligneBDD['content'],
-                $ligneBDD['date'],
+                $ligneBDD['release_date'],
                 $ligneBDD['id_user'],
                 $ligneBDD['id_article']
             );
         }
         return $comments;
+    }
+
+    Public function getAllInvalidComments()
+    {
+        $req = $this->getBdd()->prepare("SELECT * FROM comments WHERE is_valid=false");
+        $req->execute();
+        $lignesBDD = $req->fetchAll(\PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        $comments = [];
+
+        foreach ($lignesBDD as $ligneBDD) {
+            $author = $this->userManager->getOneUser( $ligneBDD['id_user'] );
+
+            $comments[] = new Comment(
+                $ligneBDD['id_comment'],
+                $ligneBDD['content'],
+                $ligneBDD['release_date'],
+                $ligneBDD['id_user'],
+                $ligneBDD['id_article']
+            );
+        }
+        return $comments;
+
     }
     /**
      * method that looks for a database line and returns an instance of class @see Comment
@@ -81,8 +104,8 @@ class CommentManager extends Model
 
     {
 
-        $req = $this->getBdd()->prepare('SELECT content FROM comments WHERE id_comment = :id');
-        $req->bindParam('idComment', $id_comment, \PDO::PARAM_INT);
+        $req = $this->getBdd()->prepare('SELECT * FROM comments WHERE id_comment = :id');
+        $req->bindParam('id', $id_comment, \PDO::PARAM_INT);
         $req->execute();
         $ligneBDD = $req->fetch();
         $req->closeCursor();
@@ -91,18 +114,20 @@ class CommentManager extends Model
         }
         $author = $this->userManager->getOneUser($ligneBDD['id_user']);
 
-        $theComment = new Comment($ligneBDD['idComment'], $ligneBDD['content'], $author,$ligneBDD['date'], $ligneBDD['idArticle']);
+        $theComment = new Comment($ligneBDD['id_comment'], $ligneBDD['content'], $ligneBDD['release_date'], $author, $ligneBDD['id_article']);
         return $theComment;
     }
 
 
     public function ajoutCommentBd($idArticle,$idUser,$content)
     {
-        $req = "INSERT INTO comments(id_article,id_user, content) values (:idArticle,:idUser, :content)";
+        var_dump( $idArticle, $idUser, $content);
+        $req = "INSERT INTO comments (id_article,id_user, content, release_date, is_valid) values (:id_article,:id_user, :content, NOW(), false)";
         $stmt = $this->getBdd()->prepare($req);
-        $stmt->bindValue("idUser", $idUser, \PDO::PARAM_INT);
+        $stmt->bindValue("id_article", $idArticle, \PDO::PARAM_INT);
+        $stmt->bindValue("id_user", $idUser, \PDO::PARAM_INT);
         $stmt->bindValue("content", $content, \PDO::PARAM_STR);
-        $stmt->bindValue("idArticle", $idArticle, \PDO::PARAM_INT);
+
         $resultat = $stmt->execute();
         $stmt->closeCursor();
 
@@ -118,14 +143,12 @@ class CommentManager extends Model
         $stmt->closeCursor();
 
     }
-    public function modificationCommentBd ($idComment, $content)
+    public function validationCommentBd($idComment)
     {
-        $req = "UPDATE comments SET content = :content WHERE id_comment = :id";
+        $req = "UPDATE comments SET is_valid=true WHERE id_comment = :id";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":id", $idComment, \PDO::PARAM_INT);
-        $stmt->bindValue(":content", $content,\PDO::PARAM_STR);
-        var_dump($req);
-        $resultat = $stmt->execute();
+        $stmt->execute();
         $stmt->closeCursor();
 
     }
