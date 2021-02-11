@@ -66,7 +66,7 @@ class CommentManager extends Model
                 $ligneBDD['id_comment'],
                 $ligneBDD['content'],
                 $ligneBDD['release_date'],
-                $ligneBDD['id_user'],
+                $author,
                 $ligneBDD['id_article']
             );
         }

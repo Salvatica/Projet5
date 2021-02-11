@@ -10,7 +10,7 @@ class UserManager extends Model
  * @param $id_user
  * @return User
  */
-    public function getOneUser($id)
+    public function getOneUser($id_user)
     {
 
         $req = $this->getBdd()->prepare( 'SELECT * FROM user WHERE id_user = :id' );
@@ -21,7 +21,7 @@ class UserManager extends Model
         if (empty( $ligneBDD )) {
             return null;
         }
-        $theUser = new User( $ligneBDD['id_user'], $ligneBDD['address_mail'], $ligneBDD['password'], $ligneBDD['role'], $ligneBDD['name']);
+        $theUser = new User($ligneBDD['id_user'], $ligneBDD['email'], $ligneBDD['name'], null, $ligneBDD['role']);
         return $theUser;
     }
 

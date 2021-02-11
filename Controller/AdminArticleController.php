@@ -6,7 +6,7 @@ use Blog\Models\ArticleManager;
 
 
 
-class AdminArticleController
+class AdminArticleController extends AbstractController
 {
     private $articleManager;
 
@@ -14,11 +14,12 @@ class AdminArticleController
     {
         $this->articleManager = new ArticleManager;
 
-
     }
 
     public function afficherArticles()
     {
+        $this->checkRoleAdmin();
+
         $articles = $this->articleManager->getAllArticles();
         if(is_null($articles))
         {

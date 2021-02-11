@@ -31,8 +31,12 @@ class Article
      * @var datetime
      */
     private $updateDate;
+    /**
+     * @var User
+     */
+    private $author;
 
-    public function __construct($idArticle, $title, $subtitle, $content, $releaseDate, $updateDate)
+    public function __construct($idArticle, $title, $subtitle, $content, $releaseDate, $updateDate, $user)
     {
         $this->idArticle = $idArticle;
         $this->title = $title;
@@ -40,6 +44,7 @@ class Article
         $this->content = $content;
         $this->releaseDate = new \DateTime($releaseDate);
         $this->updateDate = new \DateTime($updateDate);
+        $this->author = $user;
 
     }
 
@@ -146,6 +151,14 @@ class Article
         $this->updateDate = $updateDate;
     }
 
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 
+    public function setAuthor($user)
+    {
+        $this->author = $user;
+    }
 }
 ?>

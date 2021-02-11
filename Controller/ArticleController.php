@@ -6,7 +6,7 @@ use Blog\Models\Article;
 use Blog\Models\ArticleManager;
 use Blog\Models\CommentManager;
 
-class ArticleController
+class ArticleController extends AbstractController
 {
     private $articleManager;
     private $commentManager;
@@ -35,10 +35,12 @@ class ArticleController
     {
         $comments = $this->commentManager->getAllValidCommentsByArticleId($id);
         $theArticle = $this->articleManager->getOneArticle($id);
+
         if($_POST) {
-            // TODO replqce 1 by logged user
-            $this->commentManager->ajoutCommentBd($id,3,$_POST["comment"]);
-            header("location:".URL."articles/$id");
+            $this->redirectIfNotConnected();
+
+            $this->commentManager->ajoutCommentBd($id,$_SESSION['user_id'],$_POST["comment"]);
+            $this->redirigerVers("articles/$id");
         }
         if(is_null($theArticle))
             {
@@ -54,38 +56,50 @@ class ArticleController
 
     public function ajoutArticle()
     {
+        $this->checkRoleAdmin();
         require "view/ajoutArticle.view.php";
     }
+
     public function ajoutArticleValidation()
     {
+        $this->checkRoleAdmin();
 
-        $this->articleManager->ajoutArticleBd($_POST['title'],$_POST['subtitle'],$_POST['content']);
-        header('location:'.URL."articles");
+        $this->articleManager->ajoutArticleBd($_POST['title'],$_POST['subtitle'],$_POST['content'], $_SESSION['user_id']);
+        $this->redirigerVers("articles");
 
     }
 
     public function suppressionArticle($id)
     {
+        $this->checkRoleAdmin();
+
+
         $theArticle = $this->articleManager->getOneArticle($id);
         if(empty($theArticle)){
-            header('location: '. URL . "articles");
+
+            $this->redirigerVers("articles");
         }
 
         $this->articleManager->suppressionArticleBd($theArticle);
-        header('location: '. URL . "articles");
 
+        $this->redirigerVers("articles");
     }
 
     public function modificationArticle($id)
 {
+    $this->checkRoleAdmin();
+
     $theArticle = $this->articleManager->getOneArticle($id);
     require "view/modifierArticle.view.php";
 
 }
     public function modificationArticleValidation()
     {
-        $this->articleManager->modificationArticleBd($_POST['id_article'], $_POST['title'],$_POST['subtitle'],$_POST['content']);
-        header('location:'. URL . "articles");
+        $this->checkRoleAdmin();
+
+        $this->articleManager->modificationArticleBd($_POST['id_article'], $_POST['title'],$_POST['subtitle'],$_POST['content'], $_POST['id_user']);
+        $this->redirigerVers("articles");
     }
+
 
 }

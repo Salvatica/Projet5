@@ -17,10 +17,6 @@ ob_start();
                     <h2><a href="<?= URL ?>articles/<?= htmlspecialchars($article->getIdArticle()); ?>" ><?= htmlspecialchars($article->getTitle()); ?></a></h2>
                     <h3><?= htmlspecialchars($article->getSubtitle()); ?></h3>
                     <hr class="star-primary"/>
-                    <h3>Contenu</h3>
-                    <p><?= nl2br(htmlspecialchars($article->getContent())); ?></p>
-
-
 
                 </div>
 

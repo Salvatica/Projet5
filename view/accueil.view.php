@@ -19,13 +19,10 @@
         </div>
     </header>
 
-
-
     <!-- About Me -->
     <section class="success" id="About">
-        <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
+                <div class="col-12 col-lg-12 text-center">
                     <h2>Qui suis-je ?</h2>
                     <hr class="star-light">
                 </div>
@@ -37,20 +34,16 @@
                 <div class="col-lg-4">
                     <p>Actuellement contrôleur en cabinet d'Expertise Comptable, je me destine à faire de l'informatique mon futur métier !</p>
                 </div>
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="#" class="btn btn-lg btn-outline">
-                        <i class="fa fa-download"></i> Download Theme
-                    </a>
-                </div>
+
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
-        <div class="container">
+
             <div class="row">
-                <div class="col-lg-12 text-center">
+                <div class="col-12 col-lg-12 text-center">
                     <h2>Me Contacter</h2>
                     <hr class="star-primary">
                 </div>

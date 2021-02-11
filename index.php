@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 use Blog\Controller\HomeController;
 use Blog\Controller\ArticleController;
@@ -67,15 +68,15 @@ try {
 
     elseif ($page === "connexion")
     {
-        require "view/connexion.view.php";
+        $securityController->afficherLoginForm();
     }
     elseif ($page === "register")
     {
         $securityController->afficherRegisterForm();
     }
-    elseif ($page === "login")
+    elseif ($page === "logout")
     {
-        $securityController->afficherLoginForm();
+        $securityController->logout();
     }
 
     elseif ($page === "admin/listeComments")
@@ -90,6 +91,9 @@ try {
     elseif (preg_match( "#comments/suppression/(\d+)$#", $page, $matches ))
     {
         $adminCommentController->suppressionComment($matches[1]);
+    }
+    elseif($page === "forbidden"){
+        require "view/403.view.php";
     }
 
 

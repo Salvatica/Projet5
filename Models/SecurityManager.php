@@ -3,7 +3,8 @@ namespace Blog\Models;
 
 
 
-class SecurityManager extends Model {
+class SecurityManager extends Model
+{
 
 
     public function verifyUserExist(User $user)
@@ -14,8 +15,7 @@ class SecurityManager extends Model {
         $req->bindValue(':name', $user->getName(), \PDO::PARAM_STR);
         $req->bindValue(':email', $user->getEmail(), \PDO::PARAM_STR);
         $req->execute();
-        if($req->rowCount() > 0)
-        {
+        if ($req->rowCount() > 0) {
             $userExist = true;
 
         }
@@ -24,6 +24,7 @@ class SecurityManager extends Model {
 
 
     }
+
     public function saveUser(User $user)
     {
 
@@ -36,6 +37,24 @@ class SecurityManager extends Model {
         $req->execute();
 
     }
+
+    public function getOneUserByName($name)
+    {
+        $req = $this->getBdd()->prepare('SELECT * FROM user WHERE name = :name');
+        $req->bindParam('name', $name, \PDO::PARAM_STR);
+        $req->execute();
+        $ligneBDD = $req->fetch();
+        $req->closeCursor();
+        if (empty($ligneBDD)) {
+            return null;
+        }
+
+        $theUser = new User($ligneBDD['id_user'], $ligneBDD['email'], $ligneBDD['name'], $ligneBDD['password'], $ligneBDD['role']);
+        return $theUser;
+
+    }
+
+
 
 
 }
