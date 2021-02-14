@@ -75,7 +75,8 @@ class ArticleController extends AbstractController
 
 
         $theArticle = $this->articleManager->getOneArticle($id);
-        if(empty($theArticle)){
+        if(empty($theArticle))
+        {
 
             $this->redirigerVers("articles");
         }

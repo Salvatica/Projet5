@@ -3,10 +3,10 @@ session_start();
 
 use Blog\Controller\HomeController;
 use Blog\Controller\ArticleController;
-use Blog\Controller\CommentController;
 use Blog\Controller\AdminArticleController;
 use Blog\Controller\AdminCommentController;
 use Blog\Controller\SecurityController;
+use Blog\Controller\MailController;
 
 // on défini l'url
 define( "URL", str_replace( "index.php", "", (isset( $_SERVER['HTTPS'] ) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]" ) );
@@ -25,6 +25,8 @@ $adminArticleController = new AdminArticleController();
 $adminCommentController = new AdminCommentController();
 
 $securityController = new SecurityController();
+
+$mailController = new MailController();
 
 try {
 
@@ -63,6 +65,9 @@ try {
     elseif(preg_match("#articles/modificationValidation$#",$page, $matches ))
     {
         $articleController->modificationArticleValidation();
+    }
+    elseif ($page == "sendEmail"){
+        $mailController->handleContactForm();
     }
 
 

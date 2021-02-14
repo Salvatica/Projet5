@@ -174,7 +174,7 @@
 
 <!-- Contact Form JavaScript -->
 <script src="/blog/view/js/jqBootstrapValidation.js"></script>
-<script src="/blog/view/js/contact_me.js"></script>
+<!-- <script src="/blog/view/js/contact_me.js"></script>-->
 
 <!-- Theme JavaScript -->
 <script src="/blog/view/js/freelancer.min.js"></script>

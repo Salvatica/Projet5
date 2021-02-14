@@ -35,7 +35,6 @@ class SecurityController extends AbstractController
             }
             // On va chercher l'utilisateur en BDD
             $theUser = $this->securityManager->getOneUserByName($name);
-            array_push($errors, $theUser->getName());
 
             //Si l'utilisateur n'existe pas en BDD, on redirige vers le formulaire de login
             if (!$theUser)

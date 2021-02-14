@@ -6,5 +6,8 @@
         "psr-4": {
             "Blog\\": ""
         }
+    },
+    "require": {
+        "swiftmailer/swiftmailer": "^6.0"
     }
 }
