@@ -2,8 +2,8 @@
 
 
 namespace Blog\Controller;
-use Blog\Models\ArticleManager;
 
+use Blog\Models\ArticleManager;
 
 
 class AdminArticleController extends AbstractController
@@ -21,12 +21,9 @@ class AdminArticleController extends AbstractController
         $this->checkRoleAdmin();
 
         $articles = $this->articleManager->getAllArticles();
-        if(is_null($articles))
-        {
+        if (is_null($articles)) {
             require "view/404.view.php";
-        }
-        else
-        {
+        } else {
             require "view/adminArticles.view.php";
         }
 

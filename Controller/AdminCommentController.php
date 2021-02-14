@@ -2,6 +2,7 @@
 
 
 namespace Blog\Controller;
+
 use Blog\Models\CommentManager;
 
 
@@ -17,27 +18,25 @@ class AdminCommentController extends AbstractController
     }
 
     public function afficherComments()
-        {
-            $this->checkRoleAdmin();
+    {
+        $this->checkRoleAdmin();
 
-            $comments = $this->commentManager->getAllInvalidComments();
-        if (is_null($comments))
-        {
+        $comments = $this->commentManager->getAllInvalidComments();
+        if (is_null($comments)) {
             require "view/404.view.php";
-        }
-        else
-            {
+        } else {
             require "view/adminComments.view.php";
-            }
+        }
 
     }
+
     public function suppressionComment($id)
     {
         $this->checkRoleAdmin();
 
 
         $theComment = $this->commentManager->getOneComment($id);
-        if (empty( $theComment )) {
+        if (empty($theComment)) {
             $this->redirigerVers("admin/listeComments");
         }
         $this->commentManager->suppressionCommentBd($theComment);

@@ -2,7 +2,6 @@
 
 namespace Blog\Controller;
 
-use Blog\Models\Article;
 use Blog\Models\ArticleManager;
 use Blog\Models\CommentManager;
 
@@ -10,6 +9,7 @@ class ArticleController extends AbstractController
 {
     private $articleManager;
     private $commentManager;
+
     public function __construct()
     {
         $this->articleManager = new ArticleManager;
@@ -20,14 +20,11 @@ class ArticleController extends AbstractController
     public function afficherArticles()
     {
         $articles = $this->articleManager->getAllArticles();
-        if(is_null($articles))
-            {
-                require "view/404.view.php";
-            }
-        else
-            {
-                require "view/listeArticles.view.php";
-            }
+        if (is_null($articles)) {
+            require "view/404.view.php";
+        } else {
+            require "view/listeArticles.view.php";
+        }
 
     }
 
@@ -36,21 +33,17 @@ class ArticleController extends AbstractController
         $comments = $this->commentManager->getAllValidCommentsByArticleId($id);
         $theArticle = $this->articleManager->getOneArticle($id);
 
-        if($_POST) {
+        if ($_POST) {
             $this->redirectIfNotConnected();
 
-            $this->commentManager->ajoutCommentBd($id,$_SESSION['user_id'],$_POST["comment"]);
+            $this->commentManager->ajoutCommentBd($id, $_SESSION['user_id'], $_POST["comment"]);
             $this->redirigerVers("articles/$id");
         }
-        if(is_null($theArticle))
-            {
-                require "view/404.view.php";
-            }
-
-        else
-            {
-                require "view/afficherArticle.view.php";
-            }
+        if (is_null($theArticle)) {
+            require "view/404.view.php";
+        } else {
+            require "view/afficherArticle.view.php";
+        }
 
     }
 
@@ -64,7 +57,7 @@ class ArticleController extends AbstractController
     {
         $this->checkRoleAdmin();
 
-        $this->articleManager->ajoutArticleBd($_POST['title'],$_POST['subtitle'],$_POST['content'], $_SESSION['user_id']);
+        $this->articleManager->ajoutArticleBd($_POST['title'], $_POST['subtitle'], $_POST['content'], $_SESSION['user_id']);
         $this->redirigerVers("articles");
 
     }
@@ -75,8 +68,7 @@ class ArticleController extends AbstractController
 
 
         $theArticle = $this->articleManager->getOneArticle($id);
-        if(empty($theArticle))
-        {
+        if (empty($theArticle)) {
 
             $this->redirigerVers("articles");
         }
@@ -87,18 +79,19 @@ class ArticleController extends AbstractController
     }
 
     public function modificationArticle($id)
-{
-    $this->checkRoleAdmin();
+    {
+        $this->checkRoleAdmin();
 
-    $theArticle = $this->articleManager->getOneArticle($id);
-    require "view/modifierArticle.view.php";
+        $theArticle = $this->articleManager->getOneArticle($id);
+        require "view/modifierArticle.view.php";
 
-}
+    }
+
     public function modificationArticleValidation()
     {
         $this->checkRoleAdmin();
 
-        $this->articleManager->modificationArticleBd($_POST['id_article'], $_POST['title'],$_POST['subtitle'],$_POST['content'], $_POST['id_user']);
+        $this->articleManager->modificationArticleBd($_POST['id_article'], $_POST['title'], $_POST['subtitle'], $_POST['content'], $_POST['id_user']);
         $this->redirigerVers("articles");
     }
 

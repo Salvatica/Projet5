@@ -48,12 +48,10 @@ class MailController extends AbstractController
                     $result = $this->mailManager->sendEmail($name, $mail, $phone, $body);
 
 
-                    if ($result < 1)
-                    {
+                    if ($result < 1) {
 
                         array_push($error, "le message n'a pas été envoyé");
-                    }
-                    else{
+                    } else {
                         $success = "Votre message a bien été envoyé";
                     }
 
