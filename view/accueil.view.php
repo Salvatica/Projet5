@@ -41,11 +41,11 @@
 
     <!-- Contact Section -->
     <section id="contact">
-        <?php if(!empty($success)):?>
+        <?php if($success = $this->getAndCleanFlashMessage('success')):?>
             <div class="alert alert-success"><p><?=$success;?></p></div>
         <?php endif;?>
 
-        <?php if(!empty($errors)):?>
+        <?php if($errors= $this->getAndCleanFlashMessage('contact_form_errrors') ):?>
         <div class="alert alert-danger">
             <?php foreach($errors as $error):?>
                 <p><?=$error;?></p>
@@ -60,8 +60,6 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                     <form name="sentMessage" id="contactForm" method="POST" action="<?= URL ?>sendEmail" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">

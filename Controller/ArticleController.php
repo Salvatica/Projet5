@@ -20,7 +20,7 @@ class ArticleController extends AbstractController
     public function afficherArticles()
     {
         $articles = $this->articleManager->getAllArticles();
-        if (is_null($articles)) {
+        if ($articles ===null) {
             require "view/404.view.php";
         } else {
             require "view/listeArticles.view.php";
@@ -39,7 +39,7 @@ class ArticleController extends AbstractController
             $this->commentManager->ajoutCommentBd($id, $_SESSION['user_id'], $_POST["comment"]);
             $this->redirigerVers("articles/$id");
         }
-        if (is_null($theArticle)) {
+        if ($theArticle ===null) {
             require "view/404.view.php";
         } else {
             require "view/afficherArticle.view.php";

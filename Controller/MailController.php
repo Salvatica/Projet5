@@ -18,8 +18,8 @@ class MailController extends AbstractController
 
     public function handleContactForm()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $error = [];
+        if ($this->isPostMethod()) {
+            $errors = [];
 
 
             if (!empty($_POST)) {
@@ -30,36 +30,35 @@ class MailController extends AbstractController
 
 
                 if (empty($name)) {
-                    array_push($error, "Le nom est vide");
+                    array_push($errors, "Le nom est vide");
                 }
                 if (empty($mail) || !filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                    array_push($error, "L'adresse mail n'est pas valide");
+                    array_push($errors, "L'adresse mail n'est pas valide");
                 }
 
                 if (empty($phone) || strlen($phone) < 10) {
-                    array_push($error, "le numéro de teléphone doit comporter 10 chiffres");
+                    array_push($errors, "le numéro de teléphone doit comporter 10 chiffres");
                 }
 
                 if (empty($body)) {
-                    array_push($error, "le message est vide");
+                    array_push($errors, "le message est vide");
                 }
-                if (empty($error)) {
+                if (empty($errors)) {
 
                     $result = $this->mailManager->sendEmail($name, $mail, $phone, $body);
 
 
                     if ($result < 1) {
 
-                        array_push($error, "le message n'a pas été envoyé");
+                        array_push($errors, "le message n'a pas été envoyé");
                     } else {
-                        $success = "Votre message a bien été envoyé";
+                        $this->saveFlashMessage('success',"Votre message a bien été envoyé");
                     }
 
                 }
-
-                require "view/accueil.view.php";
-
             }
+            $this->saveFlashMessage('contact_form_errors',$errors);
+            return $this->redirigerVers('accueil');
 
         }
 

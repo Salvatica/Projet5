@@ -3,7 +3,8 @@
 namespace Blog\Controller;
 
 
-class HomeController
+class HomeController extends AbstractController
+
 {
 
 
