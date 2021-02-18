@@ -1,9 +1,9 @@
-#Projet 5 : OpenClassrooms
-##Créez votre premier blog en PHP
+# Projet 5 : OpenClassrooms
+## Créez votre premier blog en PHP
 
 Sur mon parcours de Développeur PHP/symfony, il m'a été demandé de créer un blog en PHP, en utilisant une achitecture MVC et programmation orientée objet.
 
-##Description du projet :
+## Description du projet :
 
 Le projet est de développer un blog professionnel, il se décompose en deux groupes de pages :
 - la page administrateur sera uniquement accessible aux utilisateurs ayant le role d'admin
@@ -45,16 +45,16 @@ il aura accès aux mêmes fonctionnalités que l'utilisateur et pourra en plus :
  - ajouter, modifier, supprimer un article
  - valider, supprimer un commentaire
 
-##Partie développement
+## Partie développement
 
 Le template utilisé est celui de Bootstrap, le thème choisi est freelancer.
 Le site est réputé responsive.
 
-###Prérequis
+### Prérequis
 
 Vous devez avoir un serveur web et installer PHP7, composer et Mysql
 
-###Installation
+### Installation
 
 ```
 composer install
