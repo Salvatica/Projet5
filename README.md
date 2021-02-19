@@ -47,7 +47,7 @@ il aura accès aux mêmes fonctionnalités que l'utilisateur et pourra en plus :
 
 ## Partie développement
 
-Le template utilisé est celui de Bootstrap, le thème choisi est freelancer.
+Le template utilisé est celui de Bootstrap, le thème choisi est freelancer.  
 Le site est réputé responsive.
 
 ### Prérequis
@@ -56,10 +56,17 @@ Vous devez avoir un serveur web et installer PHP7, composer et Mysql
 
 ### Installation
 
+utiliser la BBD que vous trouverez dans le dossier doc : blog.sql  
+Pour configurer l'accès à la BDD, allez dans :  model.php
+```
+git clone https://github.com/Salvatica/Projet5.git
+```
 ```
 composer install
 ```
 
+### Vérification 
+Le code a été vérifié par CODACY
 
 
 

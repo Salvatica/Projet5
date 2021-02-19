@@ -22,7 +22,7 @@ class AdminArticleController extends AbstractController
 
         $articles = $this->articleManager->getAllArticles();
         if (is_null($articles)) {
-            require "view/404.view.php";
+            $this->redirigerVers('articles/ajout');
         } else {
             require "view/adminArticles.view.php";
         }

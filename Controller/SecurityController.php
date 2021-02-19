@@ -21,24 +21,25 @@ class SecurityController extends AbstractController
     public function afficherLoginForm()
     {
         //Si la méthode utilisée est 'POST', cela signifie que le formulaire à été soumis
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($this->isPostMethod()) {
 
-            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-            $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+            $password = $this->post( 'password');
+            $name = $this->post('name');
 
 
             $errors = [];
             // On vérifie que le champ "nom d'utilisateur" a bien été saisi dans le formulaire
             if (empty($name) || !filter_var($name, FILTER_SANITIZE_STRING)) {
-                array_push($errors, 'Le nom d\'utilisateur est invalide');
+                $errors[]= 'Le nom d\'utilisateur est invalide';
 
             }
             // On va chercher l'utilisateur en BDD
             $theUser = $this->securityManager->getOneUserByName($name);
 
+
             //Si l'utilisateur n'existe pas en BDD, on redirige vers le formulaire de login
             if (!$theUser) {
-                array_push($errors, 'Ce nom d\'utilisateur n\'existe pas');
+               $errors[]= 'Ce nom d\'utilisateur n\'existe pas';
             }
 
             // Comme l'utilisateur existe en BDD, on vérifie que mdp identiques
@@ -53,7 +54,7 @@ class SecurityController extends AbstractController
 
             } else {
                 // Si le mot de passe est différent, on redirige vers le formulaire de login
-                array_push($errors, 'le mot de passe est incorrect');
+                $errors[]= 'le mot de passe est incorrect';
             }
         }
 
@@ -64,11 +65,11 @@ class SecurityController extends AbstractController
     public function afficherRegisterForm()
     {
 
-        if (!empty($_POST)) {
+        if ($this->isPostMethod()) {
 
-            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-            $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+            $email = $this->post('email');
+            $name = $this->post('name');
+            $password = $this->post('password');
 
             $user = new User($email, $name, $password, "USER");
             $errors = $user->validate();

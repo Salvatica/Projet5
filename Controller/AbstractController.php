@@ -18,6 +18,14 @@ abstract class AbstractController
         }
     }
 
+    public function isAdmin()
+    {
+        if ($_SESSION['user_role'] != 'ADMIN') {
+            return true;
+        }
+        return false;
+    }
+
     public function redirectIfNotConnected()
     {
         if (empty($_SESSION['user_name'])) {
@@ -47,17 +55,33 @@ abstract class AbstractController
         header('location: ' . URL . $url);
     }
 
-    public function post($key)
+    public function session($key)
     {
-        return filter_input(INPUT_POST, $key);
+        return $_SESSION[$key];
     }
 
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public function post($key)
+    {
+        return filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
+    }
+
+    /**
+     * @param $key
+     * @return mixed
+     */
     public function query($key)
     {
         return filter_input(INPUT_GET, $key);
     }
 
-    public function isPostMethod()
+    /**
+     * @return bool
+     */
+    public function isPostMethod(): bool
     {
         return filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST';
     }

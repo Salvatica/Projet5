@@ -49,7 +49,8 @@ class SecurityManager extends Model
             return null;
         }
 
-        $theUser = new User($ligneBDD['id_user'], $ligneBDD['email'], $ligneBDD['name'], $ligneBDD['password'], $ligneBDD['role']);
+        $theUser = new User($ligneBDD['email'], $ligneBDD['name'], $ligneBDD['password'], $ligneBDD['role']);
+        $theUser->setId($ligneBDD['id_user']);
         return $theUser;
 
     }

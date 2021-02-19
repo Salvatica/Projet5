@@ -20,7 +20,10 @@ class ArticleController extends AbstractController
     public function afficherArticles()
     {
         $articles = $this->articleManager->getAllArticles();
-        if ($articles ===null) {
+        if ($articles === null && $this->isAdmin()) {
+            $this->redirigerVers('admin/listeArticles');
+        }
+        if ($articles === null) {
             require "view/404.view.php";
         } else {
             require "view/listeArticles.view.php";
@@ -36,10 +39,10 @@ class ArticleController extends AbstractController
         if ($_POST) {
             $this->redirectIfNotConnected();
 
-            $this->commentManager->ajoutCommentBd($id, $_SESSION['user_id'], $_POST["comment"]);
+            $this->commentManager->ajoutCommentBd($id, $this->session('user_id'), $this->post('comment'));
             $this->redirigerVers("articles/$id");
         }
-        if ($theArticle ===null) {
+        if ($theArticle === null) {
             require "view/404.view.php";
         } else {
             require "view/afficherArticle.view.php";
@@ -57,7 +60,7 @@ class ArticleController extends AbstractController
     {
         $this->checkRoleAdmin();
 
-        $this->articleManager->ajoutArticleBd($_POST['title'], $_POST['subtitle'], $_POST['content'], $_SESSION['user_id']);
+        $this->articleManager->ajoutArticleBd($this->post('title'), $this->post('subtitle'), $this->post('content'), $this->session('user_id'));
         $this->redirigerVers("articles");
 
     }
@@ -91,7 +94,7 @@ class ArticleController extends AbstractController
     {
         $this->checkRoleAdmin();
 
-        $this->articleManager->modificationArticleBd($_POST['id_article'], $_POST['title'], $_POST['subtitle'], $_POST['content'], $_POST['id_user']);
+        $this->articleManager->modificationArticleBd($this->post('id_article'), $this->post('title'), $this->post('subtitle'), $this->post('content'), $this->post('id_user'));
         $this->redirigerVers("articles");
     }
 
