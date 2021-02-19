@@ -14,9 +14,9 @@ Le projet est de développer un blog professionnel, il se décompose en deux gro
 - une page accueil permettant de se présenter
 - une page listant tous les articles
 - une page affichant un article
+- une page permettant d'ajouter/modifier/supprimer un article
 - une page permettant d'ajouter un commentaire
 - une page permettant de valider/supprimer un commentaire
-- une page permettant d'ajouter/modifier/supprimer un article
 - une page inscription/connexion
 - un formulaire de contact
 - un lien vers le CV en format pdf

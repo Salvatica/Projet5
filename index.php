@@ -1,5 +1,6 @@
 <?php
 session_start();
+unset($_SESSION['jeton']);
 
 use Blog\Controller\HomeController;
 use Blog\Controller\ArticleController;
@@ -7,6 +8,12 @@ use Blog\Controller\AdminArticleController;
 use Blog\Controller\AdminCommentController;
 use Blog\Controller\SecurityController;
 use Blog\Controller\MailController;
+
+if (!isset($_SESSION['jeton'])) {
+    $_SESSION['jeton'] = md5(random_bytes(10));
+
+}
+
 
 // on défini l'url
 define( "URL", str_replace( "index.php", "", (isset( $_SERVER['HTTPS'] ) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]" ) );

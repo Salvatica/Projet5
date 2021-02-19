@@ -15,6 +15,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Valider</button>
+        <input type="hidden" id="jeton" name="jeton" value="<?php $_SESSION['jeton']?>">
     </form>
 
 

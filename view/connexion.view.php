@@ -22,6 +22,7 @@ ob_start();
                 <input type="password" name="password" class="form-control" placeholder="Mot de passe">
             </div>
             <button type="submit" class="btn btn-primary">connexion</button>
+            <input type="hidden" id="jeton" name="jeton" value="<?php $_SESSION['jeton']?>">
         </form>
         <p> Pas encore inscrit ? alors inscrivez-vous en  <a href="<?= URL ?>register" >cliquant ici </a></p>
     </div>

@@ -28,7 +28,9 @@ ob_start();
                 <label for="password">Password</label>
                 <input type="password" name="password" class="form-control" placeholder="Mot de passe">
             </div>
+
             <button type="submit" class="btn btn-primary">Envoyer</button>
+            <input type="hidden" id="jeton" name="jeton" value="<?php $_SESSION['jeton']?>">
         </form>
     </div>
 

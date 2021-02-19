@@ -25,11 +25,12 @@ ob_start();
                         <!-- modif suppression -->
                         <form method="POST" action="<?= URL ?>articles/modification/<?= htmlspecialchars($article->getIdArticle()); ?>">
                             <button class="btn btn-primary">Modifier</button>
+                            <input type="hidden" id="jeton" name="jeton" value="<?php $_SESSION['jeton']?>">
                         </form></td>
                 <td class="align-middle">
                         <form method="POST" action="<?= URL ?>articles/suppression/<?= htmlspecialchars($article->getIdArticle()); ?>" onSubmit="return confirm('voulez-vous supprimer cet article ?');">
                             <button class="btn btn-primary">Supprimer</button>
-                            <!-- TODO Voir jeton CSRF se renseigner -->
+                            <input type="hidden" id="jeton" name="jeton" value="<?php $_SESSION['jeton']?>">
                         </form></td>
             </tr>
 <?php

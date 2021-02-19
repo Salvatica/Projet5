@@ -36,7 +36,7 @@ class ArticleController extends AbstractController
         $comments = $this->commentManager->getAllValidCommentsByArticleId($id);
         $theArticle = $this->articleManager->getOneArticle($id);
 
-        if ($_POST) {
+        if ($this->isPostMethod()) {
             $this->redirectIfNotConnected();
 
             $this->commentManager->ajoutCommentBd($id, $this->session('user_id'), $this->post('comment'));
@@ -59,6 +59,7 @@ class ArticleController extends AbstractController
     public function ajoutArticleValidation()
     {
         $this->checkRoleAdmin();
+        $this->checkCsrf();
 
         $this->articleManager->ajoutArticleBd($this->post('title'), $this->post('subtitle'), $this->post('content'), $this->session('user_id'));
         $this->redirigerVers("articles");
@@ -68,7 +69,7 @@ class ArticleController extends AbstractController
     public function suppressionArticle($id)
     {
         $this->checkRoleAdmin();
-
+        $this->checkCsrf();
 
         $theArticle = $this->articleManager->getOneArticle($id);
         if (empty($theArticle)) {
@@ -84,6 +85,7 @@ class ArticleController extends AbstractController
     public function modificationArticle($id)
     {
         $this->checkRoleAdmin();
+        $this->checkCsrf();
 
         $theArticle = $this->articleManager->getOneArticle($id);
         require "view/modifierArticle.view.php";
@@ -93,6 +95,7 @@ class ArticleController extends AbstractController
     public function modificationArticleValidation()
     {
         $this->checkRoleAdmin();
+        $this->checkCsrf();
 
         $this->articleManager->modificationArticleBd($this->post('id_article'), $this->post('title'), $this->post('subtitle'), $this->post('content'), $this->post('id_user'));
         $this->redirigerVers("articles");

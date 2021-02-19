@@ -33,7 +33,7 @@ class AdminCommentController extends AbstractController
     public function suppressionComment($id)
     {
         $this->checkRoleAdmin();
-
+        $this->checkCsrf();
 
         $theComment = $this->commentManager->getOneComment($id);
         if (empty($theComment)) {

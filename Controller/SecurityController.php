@@ -66,7 +66,7 @@ class SecurityController extends AbstractController
     {
 
         if ($this->isPostMethod()) {
-
+            $this->checkCsrf();
             $email = $this->post('email');
             $name = $this->post('name');
             $password = $this->post('password');

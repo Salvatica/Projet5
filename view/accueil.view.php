@@ -94,6 +94,7 @@
                         <div class="row">
                             <div class="form-group col-xs-12">
                                 <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
+                                <input type="hidden" id="jeton" name="jeton" value="<?php $_SESSION['jeton']?>">
                             </div>
                         </div>
                     </form>

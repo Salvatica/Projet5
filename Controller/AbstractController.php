@@ -85,4 +85,12 @@ abstract class AbstractController
     {
         return filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST';
     }
+
+    public function checkCsrf(){
+        if(!isset($_SESSION['jeton']) || ($_POST['jeton']) != $_SESSION['jeton']){
+            $this->redirigerVers('forbidden');
+
+        }
+    }
+
 }
