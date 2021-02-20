@@ -1,4 +1,5 @@
 <?php
+
 namespace Blog\Models;
 
 class User
@@ -26,7 +27,7 @@ class User
      */
     private $role = "USER";
 
-    public function __construct ($mailAddress, $name, $password, $role)
+    public function __construct($mailAddress, $name, $password, $role)
     {
 
         $this->email = $mailAddress;
@@ -39,17 +40,16 @@ class User
     {
         $errors = [];
         // verification du mail
-        if(!filter_var($this->getEmail(),FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($this->getEmail(), FILTER_VALIDATE_EMAIL)) {
             //Invalid email!
             $errors[] = "L'adresse mail est invalide";
         }
         // verification du pseudo
-        if(empty($this->getName()) || strlen($this->getName()) < 3){
+        if (empty($this->getName()) || strlen($this->getName()) < 3) {
             $errors[] = "Le nom doit comporter au moins 3 caractères.";
         }
         // Vérification password
-        if(empty($this->getPassword()) || strlen($this->getPassword()) < 6)
-        {
+        if (empty($this->getPassword()) || strlen($this->getPassword()) < 6) {
             $errors[] = "Le mot de passe doit comporter au moins 6 caractères";
         }
 
@@ -57,7 +57,6 @@ class User
 
 
     }
-
 
 
     /**

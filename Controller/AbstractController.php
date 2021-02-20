@@ -60,6 +60,19 @@ abstract class AbstractController
         return $_SESSION[$key];
     }
 
+    public function setSession($key, $value)
+    {
+        $_SESSION[$key] = $value;
+    }
+
+    public function existInSession($key)
+    {
+        if (isset($_SESSION[$key])) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * @param $key
      * @return mixed
@@ -86,11 +99,29 @@ abstract class AbstractController
         return filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST';
     }
 
-    public function checkCsrf(){
-        if(!isset($_SESSION['jeton']) || ($_POST['jeton']) != $_SESSION['jeton']){
+    public function checkCsrf()
+    {
+        if (!isset($_SESSION['jeton']) || ($_POST['jeton']) != $_SESSION['jeton']) {
             $this->redirigerVers('forbidden');
 
         }
     }
+
+    public function getCsrfToken()
+    {
+        return $_SESSION['jeton'];
+    }
+
+
+    /**
+     * @param $view
+     * @param $parameters []
+     */
+    public function needView($view, $parameters)
+    {
+        extract($parameters);
+        require $view;
+    }
+
 
 }

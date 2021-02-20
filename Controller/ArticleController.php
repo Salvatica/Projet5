@@ -24,9 +24,10 @@ class ArticleController extends AbstractController
             $this->redirigerVers('admin/listeArticles');
         }
         if ($articles === null) {
-            require "view/404.view.php";
+
+            $this->needView("view/404.view.php", []);
         } else {
-            require "view/listeArticles.view.php";
+            $this->needView("view/listeArticles.view.php", ['articles' => $articles]);
         }
 
     }
@@ -43,9 +44,9 @@ class ArticleController extends AbstractController
             $this->redirigerVers("articles/$id");
         }
         if ($theArticle === null) {
-            require "view/404.view.php";
+            $this->needView("view/404.view.php", []);
         } else {
-            require "view/afficherArticle.view.php";
+            $this->needView("view/afficherArticle.view.php", ['theArticle' => $theArticle, 'comments' => $comments]);
         }
 
     }
@@ -53,7 +54,7 @@ class ArticleController extends AbstractController
     public function ajoutArticle()
     {
         $this->checkRoleAdmin();
-        require "view/ajoutArticle.view.php";
+        $this->needView("view/ajoutArticle.view.php", []);
     }
 
     public function ajoutArticleValidation()
@@ -88,7 +89,7 @@ class ArticleController extends AbstractController
         $this->checkCsrf();
 
         $theArticle = $this->articleManager->getOneArticle($id);
-        require "view/modifierArticle.view.php";
+        $this->needView("view/modifierArticle.view.php", ['theArticle' => $theArticle]);
 
     }
 

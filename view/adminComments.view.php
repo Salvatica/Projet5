@@ -18,15 +18,19 @@ ob_start();
     foreach ($comments as $comment) { ?>
 
         <tr>
-            <td class="align-middle"><?= $comment->getContent() ; ?></td>
+            <td class="align-middle"><?= $comment->getContent(); ?></td>
             <td class="align-middle">
-                <form method="POST" action="<?= URL?>comments/validation/<?= htmlspecialchars($comment->getIdComment()); ?>">
+                <form method="POST"
+                      action="<?= URL ?>comments/validation/<?= htmlspecialchars($comment->getIdComment()); ?>">
                     <button class="btn btn-success btn-lg">Valider</button>
-                </form></td>
+                </form>
+            </td>
             <td class="align-middle">
-                <form method="POST" action="<?= URL ?>comments/suppression/<?= htmlspecialchars($comment->getIdComment()); ?>" onSubmit="return confirm('voulez-vous supprimer ce commentaire ?');">
+                <form method="POST"
+                      action="<?= URL ?>comments/suppression/<?= htmlspecialchars($comment->getIdComment()); ?>"
+                      onSubmit="return confirm('voulez-vous supprimer ce commentaire ?');">
                     <button class="btn btn-success btn-lg">Supprimer</button>
-                    <input type="hidden" id="jeton" name="jeton" value="<?php $_SESSION['jeton']?>">
+                    <input type="hidden" id="jeton" name="jeton" value="<?php $this->getCsrfToken() ?>">
                 </form>
             </td>
         </tr>
@@ -36,8 +40,8 @@ ob_start();
 </table>
 <?php
 $content = ob_get_clean();
-$title="comments";
-require"layout.view.php";
+$title = "comments";
+require "layout.view.php";
 ?>
 
 

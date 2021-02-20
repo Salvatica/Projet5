@@ -3,7 +3,6 @@
 namespace Blog\Models;
 
 
-
 class Article
 {
     /**
@@ -68,18 +67,18 @@ class Article
     /**
      * @return string
      */
-   public function getTitle()
-   {
-       return $this->title;
-   }
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
     /**
      * @param $title
      */
-   public function setTitle($title)
-   {
-       $this->title = $title;
-   }
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
 
     /**
      * @return string
@@ -119,7 +118,7 @@ class Article
     /**
      * @return datetime
      */
-    public function getReleaseDate() :\DateTime
+    public function getReleaseDate(): \DateTime
 
     {
         return $this->releaseDate;
@@ -138,7 +137,7 @@ class Article
     /**
      * @return datetime
      */
-    public function getUpdateDate() :\DateTime
+    public function getUpdateDate(): \DateTime
     {
         return $this->updateDate;
     }
@@ -161,4 +160,5 @@ class Article
         $this->author = $user;
     }
 }
+
 ?>

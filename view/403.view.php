@@ -1,4 +1,5 @@
 <?php
+
 namespace blog\view;
 
 
@@ -10,8 +11,8 @@ ob_start();
 
     </div>
 
-<?php
+    <?php
 $content = ob_get_clean();
-$titre="articles";
+$titre = "articles";
 require "layout.view.php";
 ?>

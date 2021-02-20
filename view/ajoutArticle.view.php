@@ -15,12 +15,12 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Valider</button>
-        <input type="hidden" id="jeton" name="jeton" value="<?php $_SESSION['jeton']?>">
+        <input type="hidden" id="jeton" name="jeton" value="<?php $this->getCsrfToken() ?>">
     </form>
 
 
 <?php
 $content = ob_get_clean();
-$title="blog";
+$title = "blog";
 require "layout.view.php";
 ?>

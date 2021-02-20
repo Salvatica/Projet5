@@ -1,4 +1,5 @@
 <?php
+
 namespace Blog\Models;
 abstract class Model
 {
@@ -6,18 +7,18 @@ abstract class Model
 
     private static function setBdd()
     {
-        self::$pdo = new \PDO( "mysql:host=localhost;dbname=blog;charset=utf8", "root", "root" );
-        self::$pdo->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
+        self::$pdo = new \PDO("mysql:host=localhost;dbname=blog;charset=utf8", "root", "root");
+        self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
     }
 
     protected function getBdd(): \PDO
     {
-        if (self::$pdo === null)
-        {
+        if (self::$pdo === null) {
             self::setBdd();
         }
         return self::$pdo;
     }
 }
+
 ?>

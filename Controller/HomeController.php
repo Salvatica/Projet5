@@ -10,7 +10,7 @@ class HomeController extends AbstractController
 
     public function accueil()
     {
-        require "view/accueil.view.php";
+        $this->needView("view/accueil.view.php", []);
     }
 
 

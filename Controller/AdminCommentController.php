@@ -23,9 +23,10 @@ class AdminCommentController extends AbstractController
 
         $comments = $this->commentManager->getAllInvalidComments();
         if (is_null($comments)) {
-            require "view/404.view.php";
+            $this->needView("view/404.view.php", []);
         } else {
-            require "view/adminComments.view.php";
+
+            $this->needView('view/adminComments.view.php', ['comments' => $comments]);
         }
 
     }

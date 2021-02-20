@@ -18,19 +18,30 @@ class SecurityController extends AbstractController
         $this->securityManager = new SecurityManager();
     }
 
+    private function verifyUser($theUser, $password)
+    {
+        if ($theUser && password_verify($password, $theUser->getPassword())) {
+            $this->setSession('user_name', $theUser->getName());
+            $this->setSession('user_role', $theUser->getRole());
+            $this->setSession('user_id', $theUser->getId());
+            $this->setSession('user_email', $theUser->getEmail());
+            $this->redirigerVers("accueil");
+        }
+    }
+
     public function afficherLoginForm()
     {
+
         //Si la méthode utilisée est 'POST', cela signifie que le formulaire à été soumis
         if ($this->isPostMethod()) {
 
-            $password = $this->post( 'password');
+            $password = $this->post('password');
             $name = $this->post('name');
-
 
             $errors = [];
             // On vérifie que le champ "nom d'utilisateur" a bien été saisi dans le formulaire
             if (empty($name) || !filter_var($name, FILTER_SANITIZE_STRING)) {
-                $errors[]= 'Le nom d\'utilisateur est invalide';
+                $errors[] = 'Le nom d\'utilisateur est invalide';
 
             }
             // On va chercher l'utilisateur en BDD
@@ -39,31 +50,29 @@ class SecurityController extends AbstractController
 
             //Si l'utilisateur n'existe pas en BDD, on redirige vers le formulaire de login
             if (!$theUser) {
-               $errors[]= 'Ce nom d\'utilisateur n\'existe pas';
+                $errors[] = 'Ce nom d\'utilisateur n\'existe pas';
             }
 
             // Comme l'utilisateur existe en BDD, on vérifie que mdp identiques
             // Si les mots de passe sont identiques, on stock l'utilisateur en session
-            if ($theUser && password_verify($password, $theUser->getPassword())) {
-                $_SESSION['user_name'] = $theUser->getName();
-                $_SESSION['user_role'] = $theUser->getRole();
-                $_SESSION['user_id'] = $theUser->getId();
-                $_SESSION['user_email'] = $theUser->getEmail();
-                $this->redirigerVers("accueil");
 
+            if ($this->verifyUser($theUser, $password)) {
+
+                $this->redirigerVers("accueil");
 
             } else {
                 // Si le mot de passe est différent, on redirige vers le formulaire de login
-                $errors[]= 'le mot de passe est incorrect';
+                $errors[] = 'le mot de passe est incorrect';
             }
+
         }
 
-
-        require "view/connexion.view.php";
+        $this->needView("view/connexion.view.php", []);
     }
 
     public function afficherRegisterForm()
     {
+
 
         if ($this->isPostMethod()) {
             $this->checkCsrf();
@@ -84,7 +93,7 @@ class SecurityController extends AbstractController
             }
         }
 
-        require "view/register.view.php";
+        $this->needView("view/register.view.php", []);
     }
 
     public function logout()

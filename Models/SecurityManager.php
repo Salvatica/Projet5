@@ -1,6 +1,6 @@
 <?php
-namespace Blog\Models;
 
+namespace Blog\Models;
 
 
 class SecurityManager extends Model
@@ -54,8 +54,6 @@ class SecurityManager extends Model
         return $theUser;
 
     }
-
-
 
 
 }

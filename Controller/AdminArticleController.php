@@ -24,7 +24,8 @@ class AdminArticleController extends AbstractController
         if (is_null($articles)) {
             $this->redirigerVers('articles/ajout');
         } else {
-            require "view/adminArticles.view.php";
+
+            $this->needView("view/adminArticles.view.php", ['articles' => $articles]);
         }
 
     }

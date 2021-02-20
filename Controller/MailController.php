@@ -19,7 +19,7 @@ class MailController extends AbstractController
     public function handleContactForm()
 
     {
-            $this->checkCsrf();
+        $this->checkCsrf();
         if ($this->isPostMethod()) {
             $errors = [];
 

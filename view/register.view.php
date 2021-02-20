@@ -2,9 +2,6 @@
 ob_start();
 ?>
 
-
-
-
     <div class="container">
         <?php if (!empty($errors)): ?>
             <div class="alert alert-danger">
@@ -30,7 +27,7 @@ ob_start();
             </div>
 
             <button type="submit" class="btn btn-primary">Envoyer</button>
-            <input type="hidden" id="jeton" name="jeton" value="<?php $_SESSION['jeton']?>">
+            <input type="hidden" id="jeton" name="jeton" value="<?php $this->getCsrfToken() ?>">
         </form>
     </div>
 

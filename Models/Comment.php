@@ -1,4 +1,5 @@
 <?php
+
 namespace Blog\Models;
 
 use DateTime;
@@ -31,16 +32,16 @@ class Comment
     private $isValid;
 
 
-
-    public function __construct($idComment,$content, $releaseDate, $user,$article)
+    public function __construct($idComment, $content, $releaseDate, $user, $article)
     {
-        $this->idComment=$idComment;
+        $this->idComment = $idComment;
         $this->content = $content;
         $this->releaseDate = new \DateTime($releaseDate);
         $this->author = $user;
         $this->article = $article;
 
     }
+
     public function getIdComment()
     {
         return $this->idComment;
@@ -50,6 +51,7 @@ class Comment
     {
         $this->idComment = $idComment;
     }
+
     public function getContent()
     {
         return $this->content;
@@ -60,12 +62,12 @@ class Comment
         $this->content = $content;
     }
 
-    public function getReleaseDate():\DateTime
+    public function getReleaseDate(): \DateTime
     {
         return $this->releaseDate;
     }
 
-        public function setReleaseDate($releaseDate)
+    public function setReleaseDate($releaseDate)
     {
         $this->releaseDate = $releaseDate;
     }
