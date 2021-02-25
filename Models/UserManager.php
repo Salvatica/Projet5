@@ -22,7 +22,8 @@ class UserManager extends Model
         if (empty($ligneBDD)) {
             return null;
         }
-        $theUser = new User($ligneBDD['id_user'], $ligneBDD['email'], $ligneBDD['name'], null, $ligneBDD['role']);
+        $theUser = new User($ligneBDD['email'], $ligneBDD['name'], null, $ligneBDD['role']);
+        $theUser->setId($ligneBDD['id_user']);
         return $theUser;
     }
 

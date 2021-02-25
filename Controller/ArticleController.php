@@ -69,25 +69,24 @@ class ArticleController extends AbstractController
 
     public function suppressionArticle($id)
     {
+
         $this->checkRoleAdmin();
         $this->checkCsrf();
 
         $theArticle = $this->articleManager->getOneArticle($id);
         if (empty($theArticle)) {
 
-            $this->redirigerVers("articles");
+            $this->redirigerVers("admin/listeArticles");
         }
 
         $this->articleManager->suppressionArticleBd($theArticle);
 
-        $this->redirigerVers("articles");
+        $this->redirigerVers("admin/listeArticles");
     }
 
     public function modificationArticle($id)
     {
         $this->checkRoleAdmin();
-        $this->checkCsrf();
-
         $theArticle = $this->articleManager->getOneArticle($id);
         $this->needView("view/modifierArticle.view.php", ['theArticle' => $theArticle]);
 

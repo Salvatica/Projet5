@@ -1,6 +1,5 @@
 <?php
 session_start();
-unset($_SESSION['jeton']);
 
 use Blog\Controller\AdminArticleController;
 use Blog\Controller\AdminCommentController;
@@ -73,7 +72,7 @@ try {
         require "view/403.view.php";
     } else {
         require "view/404.view.php";
-        //throw new Exception("page introuvable");
+
     }
 
 } catch (Exception $e) {

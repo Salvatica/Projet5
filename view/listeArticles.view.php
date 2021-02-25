@@ -1,8 +1,7 @@
 <?php
-
 use Blog\Models\Article;
+$title = "articles";
 
-ob_start();
 ?>
 
 <table class="table text-center">
@@ -44,10 +43,5 @@ ob_start();
 </table>
 
 
-<?php
-$content = ob_get_clean();
-$title = "articles";
-require "layout.view.php";
-?>
 
 

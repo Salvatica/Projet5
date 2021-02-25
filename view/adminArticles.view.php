@@ -2,7 +2,8 @@
 
 use Blog\Models\Article;
 
-ob_start();
+$title = "articles";
+
 ?>
 <h1>Gestion des Articles</h1>
 
@@ -22,20 +23,17 @@ ob_start();
             <td class="align-middle"
             <a href="<?= URL ?>articles/<?= htmlspecialchars($article->getIdArticle()) ?>"><?= htmlspecialchars($article->getTitle()); ?></a></td>
             <td class="align-middle"><?= htmlspecialchars($article->getSubtitle()); ?></td>
+
             <td class="align-middle">
                 <!-- modif suppression -->
-                <form method="POST"
-                      action="<?= URL ?>articles/modification/<?= htmlspecialchars($article->getIdArticle()); ?>">
-                    <button class="btn btn-primary">Modifier</button>
-                    <input type="hidden" id="jeton" name="jeton" value="<?php $this->getCsrfToken() ?>">
-                </form>
+                <a href="<?= URL ?>articles/modification/<?= htmlspecialchars($article->getIdArticle()); ?>" class="btn btn-primary">Modifier</a>
             </td>
             <td class="align-middle">
                 <form method="POST"
                       action="<?= URL ?>articles/suppression/<?= htmlspecialchars($article->getIdArticle()); ?>"
                       onSubmit="return confirm('voulez-vous supprimer cet article ?');">
                     <button class="btn btn-primary">Supprimer</button>
-                    <input type="hidden" id="jeton" name="jeton" value="<?php $this->getCsrfToken() ?>">
+                    <input type="hidden" id="jeton" name="jeton" value="<?php $this->getCsrfToken(); ?>">
                 </form>
             </td>
         </tr>
@@ -49,11 +47,7 @@ ob_start();
 <a href="<?= URL ?>articles/ajout" class="btn btn-primary">Ajouter</a>
 
 
-<?php
-$content = ob_get_clean();
-$title = "articles";
-require "layout.view.php";
-?>
+
 
 
 

@@ -4,6 +4,7 @@ namespace blog\view;
 
 
 ob_start();
+$titre = "erreurs";
 ?>
 
     <div class="row">
@@ -11,8 +12,3 @@ ob_start();
 
     </div>
 
-    <?php
-$content = ob_get_clean();
-$titre = "articles";
-require "layout.view.php";
-?>

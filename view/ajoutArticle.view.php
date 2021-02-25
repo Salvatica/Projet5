@@ -1,4 +1,8 @@
-<?php ob_start(); ?>
+<?php
+
+$title = "blog";
+
+?>
 
     <form method="POST" action="<?= URL ?>articles/ajoutvalidation">
         <div class="mb-3">
@@ -19,8 +23,3 @@
     </form>
 
 
-<?php
-$content = ob_get_clean();
-$title = "blog";
-require "layout.view.php";
-?>

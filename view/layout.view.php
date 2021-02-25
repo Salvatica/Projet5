@@ -19,8 +19,7 @@
     <!-- Custom Fonts -->
     <link href="/blog/view/external/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
-          type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,13 +35,14 @@
 <!-- Navigation -->
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
     <div class="container">
+        <a class="navbar-brand p0" href="#page-top">
+            <img src="/blog/image/logo1.png" height="100%" alt="logo">
+        </a>
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="#page-top">logo</a>
         </div>
 
 
@@ -62,13 +62,14 @@
                 </li>
 
                 <li class="nav-item">
-                    <?php if (!$this->existInSession('user_name')) { ?>
-                        <a class="nav-link" href="<?= URL ?>connexion"> Connexion</a>
+                    <?php if(!$this->existInSession('user_name')){ ?>
+                    <a class="nav-link" href="<?= URL ?>connexion"> Connexion</a>
                         <?php
-                    } else {
+                    }
+                    else{
                         ?>
                         <a class="nav-link" href="<?= URL ?>logout"> Déconnexion</a>
-                        <?php
+                    <?php
                     }
                     ?>
                 </li>
@@ -84,8 +85,9 @@
 
 <div class="container">
 
-    <?= $content ?>
+        <?= $content ?>
 </div>
+
 
 
 <!-- Footer -->
@@ -115,7 +117,7 @@
                 </div>
                 <div class="footer-col col-md-4">
                     <h3>Mon CV</h3>
-                    <p>Lien vers <a href="image/CV.pdf">mon CV</a> complet.</p>
+                    <p>Lien vers <a href="image/CV.pdf" >mon CV</a> complet.</p>
                 </div>
 
 
@@ -123,25 +125,23 @@
             <!-- Si la session contient la variable 'user_name' => on est connecté
              ET si la variable de session 'user_role' = 'ADMIN' Le lien admin apparait -->
             <?php
-            if ($this->existInSession('user_name') && $this->session('user_role') == 'ADMIN') {
-                ?>
-                <div class="row">
-                    <div class="pos-f-t">
-                        <div class="collapse" id="navbarToggleExternalContent">
-                            <div class="bg-dark p-4">
-                                <h4 class="text-white">Administration</h4>
-                                <a href="<?= URL ?>admin/listeArticles">Articles</a><br>
-                                <a href="<?= URL ?>admin/listeComments">Commentaires</a><br>
-                            </div>
+            if($this->existInSession('user_name') && $this->session('user_role') == 'ADMIN'){
+            ?>
+            <div class="row">
+                <div class="pos-f-t">
+                    <div class="collapse" id="navbarToggleExternalContent">
+                        <div class="bg-dark p-4">
+                            <h4 class="text-white">Administration</h4>
+                            <a href="<?= URL ?>admin/listeArticles">Articles</a><br>
+                            <a href="<?= URL ?>admin/listeComments">Commentaires</a><br>
                         </div>
-                        <nav class="navbar navbar-dark bg-dark">
-                            <a data-toggle="collapse" data-target="#navbarToggleExternalContent"
-                               aria-controls="navbarToggleExternalContent" aria-expanded="false"
-                               aria-label="Toggle navigation">Menu admin</a>
-                        </nav>
                     </div>
+                    <nav class="navbar navbar-dark bg-dark">
+                        <a data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">Menu admin</a>
+                    </nav>
                 </div>
-                <?php
+            </div>
+            <?php
             }
 
             ?>

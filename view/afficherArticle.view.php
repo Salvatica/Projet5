@@ -3,7 +3,8 @@
 namespace blog\view;
 
 
-ob_start();
+$titre = "articles";
+
 ?>
 
     <div class="row">
@@ -24,7 +25,7 @@ ob_start();
                         <strong><a href="<?= URL ?>articles/<?= htmlspecialchars($theArticle->getIdArticle()); ?>"> <?= htmlspecialchars($theArticle->getUpdateDate()->format("d/m/Y H:i:s")); ?></a>
                         </strong>
                     </li>
-                    Auteur : <?= $theArticle->getAuthor()->getName() ?>
+                    Auteur : <?= htmlspecialchars($theArticle->getAuthor()->getName()); ?>
 
                     </li>
 
@@ -32,8 +33,8 @@ ob_start();
 
                 <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
                     <a href="<?= URL ?>articles">Retour</a></button>
+        </div>
 
-            </div>
         </div>
     </div>
 
@@ -71,17 +72,12 @@ if ($this->existInSession('user_name')) { // on determine si la variable user_na
     <ul class="list-group list-group-flush">
         <li class="list-group-item"><p><h6><?= htmlspecialchars($comment->getAuthor()->getName()); ?></h6></p> à posté :
             <p><?= htmlspecialchars($comment->getContent()); ?></p>
-            <p><h6><?= ($comment->getReleaseDate()->format("d/m/y H:i:s")); ?></p></h6></li>
+            <p><h6><?= htmlspecialchars($comment->getReleaseDate()->format("d/m/y H:i:s")); ?></p></h6>
+        </li>
 
     </ul>
-
 
     <?php
 } ?>
     </div>
 
-    <?php
-$content = ob_get_clean();
-$titre = "articles";
-require "layout.view.php";
-?>

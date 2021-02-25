@@ -13,9 +13,13 @@ abstract class AbstractController
     public function checkRoleAdmin()
     {
         $this->redirectIfNotConnected();
+
         if ($_SESSION['user_role'] != 'ADMIN') {
+
             $this->redirigerVers('forbidden');
         }
+
+
     }
 
     public function isAdmin()
@@ -54,6 +58,7 @@ abstract class AbstractController
     {
         header('location: ' . URL . $url);
     }
+
 
     public function session($key)
     {
@@ -102,6 +107,7 @@ abstract class AbstractController
     public function checkCsrf()
     {
         if (!isset($_SESSION['jeton']) || ($_POST['jeton']) != $_SESSION['jeton']) {
+
             $this->redirigerVers('forbidden');
 
         }
@@ -112,7 +118,6 @@ abstract class AbstractController
         return $_SESSION['jeton'];
     }
 
-
     /**
      * @param $view
      * @param $parameters []
@@ -120,8 +125,15 @@ abstract class AbstractController
     public function needView($view, $parameters)
     {
         extract($parameters);
+        ob_start();
         require $view;
+        $content = ob_get_clean();
+        require"view/layout.view.php";
     }
 
+    public function destroySession()
+    {
+        session_destroy();
+    }
 
 }

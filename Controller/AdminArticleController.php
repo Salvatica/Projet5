@@ -21,7 +21,7 @@ class AdminArticleController extends AbstractController
         $this->checkRoleAdmin();
 
         $articles = $this->articleManager->getAllArticles();
-        if (is_null($articles)) {
+        if ($articles === null) {
             $this->redirigerVers('articles/ajout');
         } else {
 

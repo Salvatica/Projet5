@@ -22,7 +22,7 @@ class AdminCommentController extends AbstractController
         $this->checkRoleAdmin();
 
         $comments = $this->commentManager->getAllInvalidComments();
-        if (is_null($comments)) {
+        if ($comments === null) {
             $this->needView("view/404.view.php", []);
         } else {
 

@@ -27,10 +27,9 @@ class User
      */
     private $role = "USER";
 
-    public function __construct($mailAddress, $name, $password, $role)
+    public function __construct($email, $name, $password, $role)
     {
-
-        $this->email = $mailAddress;
+        $this->email = $email;
         $this->name = $name;
         $this->password = $password;
         $this->role = $role;

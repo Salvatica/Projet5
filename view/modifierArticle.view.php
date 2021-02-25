@@ -1,6 +1,4 @@
-<?php
-ob_start();
-?>
+
 
 <form method="POST" action="<?= URL ?>articles/modificationValidation">
     <div class="mb-3">
@@ -27,7 +25,7 @@ ob_start();
 
 
 <?php
-$content = ob_get_clean();
+
 $title = "Modification de l'article : " . $theArticle->getIdArticle();
-require "layout.view.php";
 ?>
+

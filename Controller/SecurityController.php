@@ -25,8 +25,9 @@ class SecurityController extends AbstractController
             $this->setSession('user_role', $theUser->getRole());
             $this->setSession('user_id', $theUser->getId());
             $this->setSession('user_email', $theUser->getEmail());
-            $this->redirigerVers("accueil");
+            return true;
         }
+            return false;
     }
 
     public function afficherLoginForm()
@@ -98,10 +99,9 @@ class SecurityController extends AbstractController
 
     public function logout()
     {
-        unset($_SESSION['user']);
-        session_destroy();
+
+        $this->destroySession();
         $this->redirigerVers("connexion");
     }
-
 
 }

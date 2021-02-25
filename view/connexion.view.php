@@ -1,5 +1,7 @@
 <?php
-ob_start();
+
+$titre = "connexion";
+
 ?>
 
     <div class="container">
@@ -28,9 +30,3 @@ ob_start();
         <p> Pas encore inscrit ? alors inscrivez-vous en <a href="<?= URL ?>register">cliquant ici </a></p>
     </div>
 
-
-<?php
-$content = ob_get_clean();
-$titre = "connexion";
-require "layout.view.php";
-?>

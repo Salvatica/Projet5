@@ -136,6 +136,7 @@ header {
   font-weight: 700;
   border: none;
   margin-bottom: 0;
+image: url('../../image/logo1.png');
 
 }
 .navbar-custom a:focus {
@@ -143,6 +144,7 @@ header {
 }
 .navbar-custom .navbar-brand {
   color: white;
+  padding: 0;
 }
 
 .navbar-custom .navbar-brand:hover,

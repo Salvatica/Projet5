@@ -1,4 +1,7 @@
-<?php ob_start(); ?>
+<?php
+$titre = "Blog";
+
+?>
 
 <!-- Header -->
 <header>
@@ -113,10 +116,4 @@
     </div>
 </section>
 
-
-<?php
-$content = ob_get_clean();
-$titre = "blog";
-require "layout.view.php";
-?>
 

@@ -1,5 +1,6 @@
 <?php
-ob_start();
+
+$titre = "connexion";
 ?>
 
     <div class="container">
@@ -32,8 +33,3 @@ ob_start();
     </div>
 
 
-<?php
-$content = ob_get_clean();
-$titre = "connexion";
-require "layout.view.php";
-?>

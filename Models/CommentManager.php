@@ -39,7 +39,7 @@ class CommentManager extends Model
                 $ligneBDD['content'],
                 $ligneBDD['release_date'],
                 $ligneBDD['id_user'],
-                $this->articleManager->getOneArticle(intval($ligneBDD['id_article']))
+                $this->articleManager->getOneArticle(int($ligneBDD['id_article']))
             );
 
 
@@ -123,7 +123,7 @@ class CommentManager extends Model
 
     public function ajoutCommentBd($idArticle, $idUser, $content)
     {
-        var_dump($idArticle, $idUser, $content);
+
         $req = "INSERT INTO comments (id_article,id_user, content, release_date, is_valid) values (:id_article,:id_user, :content, NOW(), false)";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue("id_article", $idArticle, \PDO::PARAM_INT);
