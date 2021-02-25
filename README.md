@@ -1,4 +1,7 @@
 # Projet 5 : OpenClassrooms
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e9efdccb373b48fc88ef1d9c8fb587c1)](https://app.codacy.com/gh/Salvatica/Projet5?utm_source=github.com&utm_medium=referral&utm_content=Salvatica/Projet5&utm_campaign=Badge_Grade_Settings)
+
 ## Créez votre premier blog en PHP
 
 Sur mon parcours de Développeur PHP/symfony, il m'a été demandé de créer un blog en PHP, en utilisant une achitecture MVC et programmation orientée objet.
