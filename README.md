@@ -68,7 +68,7 @@ composer install
 ### Vérification 
 Le code a été vérifié par CODACY
 
-
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/07abd46cf9ed4be8bf3db964c6f45f57)](https://www.codacy.com/gh/Salvatica/Projet5/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Salvatica/Projet5&amp;utm_campaign=Badge_Grade)
 
 
 

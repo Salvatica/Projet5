@@ -26,7 +26,8 @@ $title = "articles";
 
             <td class="align-middle">
                 <!-- modif suppression -->
-                <a href="<?= URL ?>articles/modification/<?= htmlspecialchars($article->getIdArticle()); ?>" class="btn btn-primary">Modifier</a>
+                <a href="<?= URL ?>articles/modification/<?= htmlspecialchars($article->getIdArticle()); ?>"
+                   class="btn btn-primary">Modifier</a>
             </td>
             <td class="align-middle">
                 <form method="POST"

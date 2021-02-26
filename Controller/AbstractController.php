@@ -128,7 +128,7 @@ abstract class AbstractController
         ob_start();
         require $view;
         $content = ob_get_clean();
-        require"view/layout.view.php";
+        require "view/layout.view.php";
     }
 
     public function destroySession()

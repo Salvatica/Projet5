@@ -27,7 +27,7 @@ class SecurityController extends AbstractController
             $this->setSession('user_email', $theUser->getEmail());
             return true;
         }
-            return false;
+        return false;
     }
 
     public function afficherLoginForm()

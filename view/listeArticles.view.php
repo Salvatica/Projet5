@@ -1,5 +1,7 @@
 <?php
+
 use Blog\Models\Article;
+
 $title = "articles";
 
 ?>
