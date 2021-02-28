@@ -45,15 +45,15 @@ try {
     } elseif (preg_match("#articles/(\d+)$#", $page, $matches)) {
         $articleController->afficherArticle($matches[1]);
     } elseif (preg_match("#articles/ajout$#", $page, $matches)) {
-        $articleController->ajoutArticle();
+        $adminArticleController->ajoutArticle();
     } elseif (preg_match("#articles/ajoutvalidation$#", $page, $matches)) {
-        $articleController->ajoutArticleValidation();
+        $adminArticleController->ajoutArticleValidation();
     } elseif (preg_match("#articles/suppression/(\d+)$#", $page, $matches)) {
-        $articleController->suppressionArticle($matches[1]);
+        $adminArticleController->suppressionArticle($matches[1]);
     } elseif (preg_match("#articles/modification/(\d+)$#", $page, $matches)) {
-        $articleController->modificationArticle($matches[1]);
+        $adminArticleController->modificationArticle($matches[1]);
     } elseif (preg_match("#articles/modificationValidation$#", $page, $matches)) {
-        $articleController->modificationArticleValidation();
+        $adminArticleController->modificationArticleValidation();
     } elseif ($page == "sendEmail") {
         $mailController->handleContactForm();
     } elseif ($page === "connexion") {
